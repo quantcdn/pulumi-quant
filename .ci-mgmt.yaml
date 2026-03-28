@@ -1,0 +1,18 @@
+provider: quant
+organization: quantcdn
+template: external-bridged-provider
+upstreamProviderOrg: quantcdn
+major-version: 0
+pulumiConvert: 1
+providerDefaultBranch: main
+languages:
+    - dotnet
+    - go
+    - nodejs
+    - python
+publish:
+    sdk: "all,!java"
+    cdn: false
+publishRegistry: false
+esc:
+    enabled: false
