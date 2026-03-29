@@ -1,0 +1,163 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+env:
+  PROVIDER: quant
+  GO_VERSION_FILE: provider/go.mod
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  version:
+    name: Extract version
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - id: version
+        run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: provider/go.mod
+          cache-dependency-path: provider/go.sum
+      - name: Run tests
+        run: cd provider && go test -v ./...
+
+  build-provider:
+    name: Build provider (${{ matrix.os }}-${{ matrix.arch }})
+    needs: [version, test]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - { os: linux,   arch: amd64, goos: linux,   goarch: amd64 }
+          - { os: linux,   arch: arm64, goos: linux,   goarch: arm64 }
+          - { os: darwin,  arch: amd64, goos: darwin,  goarch: amd64 }
+          - { os: darwin,  arch: arm64, goos: darwin,  goarch: arm64 }
+          - { os: windows, arch: amd64, goos: windows, goarch: amd64 }
+          - { os: windows, arch: arm64, goos: windows, goarch: arm64 }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: provider/go.mod
+          cache-dependency-path: provider/go.sum
+
+      - name: Build binary
+        env:
+          VERSION: ${{ needs.version.outputs.version }}
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
+          CGO_ENABLED: "0"
+        run: |
+          cd provider
+          BINARY_NAME="pulumi-resource-${{ env.PROVIDER }}"
+          if [ "$GOOS" = "windows" ]; then BINARY_NAME="${BINARY_NAME}.exe"; fi
+          go build -ldflags "-s -w -X github.com/quantcdn/pulumi-quant/provider/pkg/version.Version=${VERSION}" \
+            -o "../bin/${BINARY_NAME}" ./cmd/pulumi-resource-${{ env.PROVIDER }}
+
+      - name: Package tarball
+        env:
+          VERSION: ${{ needs.version.outputs.version }}
+        run: |
+          TARBALL="pulumi-resource-${{ env.PROVIDER }}-v${VERSION}-${{ matrix.os }}-${{ matrix.arch }}.tar.gz"
+          tar -czf "${TARBALL}" -C bin .
+          echo "TARBALL=${TARBALL}" >> "$GITHUB_ENV"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: provider-${{ matrix.os }}-${{ matrix.arch }}
+          path: ${{ env.TARBALL }}
+
+  publish-github-release:
+    name: GitHub Release
+    needs: [version, build-provider]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          pattern: provider-*
+          merge-multiple: true
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: artifacts/*.tar.gz
+
+  publish-npm:
+    name: Publish npm
+    needs: [version, test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: provider/go.mod
+          cache-dependency-path: provider/go.sum
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Update npm
+        run: npm install -g npm@latest
+
+      - name: Build tfgen
+        env:
+          VERSION: ${{ needs.version.outputs.version }}
+        run: |
+          cd provider
+          go build -ldflags "-X github.com/quantcdn/pulumi-quant/provider/pkg/version.Version=${VERSION}" \
+            -o ../bin/pulumi-tfgen-${{ env.PROVIDER }} ./cmd/pulumi-tfgen-${{ env.PROVIDER }}
+
+      - name: Generate Node.js SDK
+        run: ./bin/pulumi-tfgen-${{ env.PROVIDER }} nodejs --out sdk/nodejs
+
+      - name: Set SDK version
+        env:
+          VERSION: ${{ needs.version.outputs.version }}
+        run: |
+          cd sdk/nodejs
+          npm version "${VERSION}" --no-git-tag-version --allow-same-version
+
+      - name: Build SDK
+        run: |
+          cd sdk/nodejs
+          yarn install --no-lockfile
+          yarn run build
+
+      - name: Publish to npm
+        run: cd sdk/nodejs && npm publish --access public
+        # Do NOT set NODE_AUTH_TOKEN — OIDC trusted publishing requires it absent
+
+  # Placeholder: future SDK publishing
+  # publish-pypi:
+  #   name: Publish PyPI
+  #   needs: [version, test]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - Build tfgen, generate python SDK, pip install build, python -m build
+  #     - pypa/gh-action-pypi-publish with OIDC trusted publishing
+  #
+  # publish-nuget:
+  #   name: Publish NuGet
+  #   needs: [version, test]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - Build tfgen, generate dotnet SDK, dotnet pack, dotnet nuget push
