@@ -1,0 +1,90 @@
+name: Upgrade Upstream Provider
+
+on:
+  repository_dispatch:
+    types: [upstream-release]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Upstream terraform-provider-quant version (e.g. v5.0.3)"
+        required: true
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  upgrade:
+    name: Upgrade terraform-provider-quant
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: provider/go.mod
+          cache-dependency-path: provider/go.sum
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Determine version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "repository_dispatch" ]; then
+            VERSION="${{ github.event.client_payload.version }}"
+          else
+            VERSION="${{ inputs.version }}"
+          fi
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "Upgrading to ${VERSION}"
+
+      - name: Update Go dependency
+        run: |
+          cd provider
+          go get "github.com/quantcdn/terraform-provider-quant/v5@${{ steps.version.outputs.version }}"
+          go mod tidy
+
+      - name: Build tfgen
+        run: |
+          cd provider
+          go build -ldflags "-X github.com/quantcdn/pulumi-quant/provider/pkg/version.Version=0.0.0-dev" \
+            -o ../bin/pulumi-tfgen-quant ./cmd/pulumi-tfgen-quant
+
+      - name: Regenerate schema
+        run: ./bin/pulumi-tfgen-quant schema --out provider/cmd/pulumi-resource-quant
+
+      - name: Regenerate Node.js SDK
+        run: ./bin/pulumi-tfgen-quant nodejs --out sdk/nodejs
+
+      - name: Regenerate Python SDK
+        run: ./bin/pulumi-tfgen-quant python --out sdk/python
+
+      - name: Regenerate Go SDK
+        run: ./bin/pulumi-tfgen-quant go --out sdk/go
+
+      - name: Regenerate .NET SDK
+        run: ./bin/pulumi-tfgen-quant dotnet --out sdk/dotnet
+
+      - name: Build and test provider
+        run: |
+          cd provider
+          go build -ldflags "-X github.com/quantcdn/pulumi-quant/provider/pkg/version.Version=0.0.0-dev" \
+            -o ../bin/pulumi-resource-quant ./cmd/pulumi-resource-quant
+          go test -v ./...
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: upgrade/terraform-provider-quant-${{ steps.version.outputs.version }}
+          title: "chore: upgrade terraform-provider-quant to ${{ steps.version.outputs.version }}"
+          body: |
+            Automated upgrade of upstream `terraform-provider-quant` to `${{ steps.version.outputs.version }}`.
+
+            - Updated `provider/go.mod` dependency
+            - Regenerated Pulumi schema
+            - Regenerated all SDKs (TypeScript, Python, Go, .NET)
+            - Provider builds and tests pass
+          commit-message: "chore: upgrade terraform-provider-quant to ${{ steps.version.outputs.version }}"
