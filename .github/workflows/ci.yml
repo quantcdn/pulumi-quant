@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: provider/go.mod
+          cache-dependency-path: provider/go.sum
+
+      - name: Build tfgen
+        run: |
+          cd provider
+          go build -ldflags "-X github.com/quantcdn/pulumi-quant/provider/pkg/version.Version=0.0.0-dev" \
+            -o ../bin/pulumi-tfgen-quant ./cmd/pulumi-tfgen-quant
+
+      - name: Build resource provider
+        run: |
+          cd provider
+          go build -ldflags "-X github.com/quantcdn/pulumi-quant/provider/pkg/version.Version=0.0.0-dev" \
+            -o ../bin/pulumi-resource-quant ./cmd/pulumi-resource-quant
+
+      - name: Run provider tests
+        run: cd provider && go test -v ./...
