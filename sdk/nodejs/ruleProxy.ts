@@ -60,6 +60,18 @@ export class RuleProxy extends pulumi.CustomResource {
      */
     declare public readonly applicationProxy: pulumi.Output<boolean>;
     /**
+     * ASN filter type (asn_is, asn_is_not, any)
+     */
+    declare public readonly asn: pulumi.Output<string>;
+    /**
+     * Allowed AS numbers
+     */
+    declare public readonly asnIs: pulumi.Output<string[]>;
+    /**
+     * Excluded AS numbers
+     */
+    declare public readonly asnIsNots: pulumi.Output<string[]>;
+    /**
      * Basic auth password
      */
     declare public readonly authPass: pulumi.Output<string>;
@@ -231,6 +243,9 @@ export class RuleProxy extends pulumi.CustomResource {
             resourceInputs["applicationName"] = state?.applicationName;
             resourceInputs["applicationPort"] = state?.applicationPort;
             resourceInputs["applicationProxy"] = state?.applicationProxy;
+            resourceInputs["asn"] = state?.asn;
+            resourceInputs["asnIs"] = state?.asnIs;
+            resourceInputs["asnIsNots"] = state?.asnIsNots;
             resourceInputs["authPass"] = state?.authPass;
             resourceInputs["authUser"] = state?.authUser;
             resourceInputs["cacheLifetime"] = state?.cacheLifetime;
@@ -287,6 +302,9 @@ export class RuleProxy extends pulumi.CustomResource {
             resourceInputs["applicationName"] = args?.applicationName;
             resourceInputs["applicationPort"] = args?.applicationPort;
             resourceInputs["applicationProxy"] = args?.applicationProxy;
+            resourceInputs["asn"] = args?.asn;
+            resourceInputs["asnIs"] = args?.asnIs;
+            resourceInputs["asnIsNots"] = args?.asnIsNots;
             resourceInputs["authPass"] = args?.authPass;
             resourceInputs["authUser"] = args?.authUser;
             resourceInputs["cacheLifetime"] = args?.cacheLifetime;
@@ -364,6 +382,18 @@ export interface RuleProxyState {
      * Enable Quant Cloud application proxy mode
      */
     applicationProxy?: pulumi.Input<boolean>;
+    /**
+     * ASN filter type (asn_is, asn_is_not, any)
+     */
+    asn?: pulumi.Input<string>;
+    /**
+     * Allowed AS numbers
+     */
+    asnIs?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Excluded AS numbers
+     */
+    asnIsNots?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Basic auth password
      */
@@ -541,6 +571,18 @@ export interface RuleProxyArgs {
      * Enable Quant Cloud application proxy mode
      */
     applicationProxy?: pulumi.Input<boolean>;
+    /**
+     * ASN filter type (asn_is, asn_is_not, any)
+     */
+    asn?: pulumi.Input<string>;
+    /**
+     * Allowed AS numbers
+     */
+    asnIs?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Excluded AS numbers
+     */
+    asnIsNots?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Basic auth password
      */

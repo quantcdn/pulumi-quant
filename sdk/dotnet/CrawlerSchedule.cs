@@ -50,7 +50,7 @@ namespace QuantCDN.Quant
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// Schedule name
+        /// Schedule name. If not provided, defaults to 'Schedule {crawler_name}'.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -74,7 +74,7 @@ namespace QuantCDN.Quant
         public Output<int> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Cron schedule string
+        /// Standard Unix cron expression with 5 space-separated fields: minute, hour, day-of-month, month, day-of-week. Example: 0 2 * * * for daily at 2 AM.
         /// </summary>
         [Output("scheduleCronString")]
         public Output<string> ScheduleCronString { get; private set; } = null!;
@@ -145,7 +145,7 @@ namespace QuantCDN.Quant
         public Input<string>? CrawlerSchedule { get; set; }
 
         /// <summary>
-        /// Schedule name
+        /// Schedule name. If not provided, defaults to 'Schedule {crawler_name}'.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -163,7 +163,7 @@ namespace QuantCDN.Quant
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// Cron schedule string
+        /// Standard Unix cron expression with 5 space-separated fields: minute, hour, day-of-month, month, day-of-week. Example: 0 2 * * * for daily at 2 AM.
         /// </summary>
         [Input("scheduleCronString", required: true)]
         public Input<string> ScheduleCronString { get; set; } = null!;
@@ -213,7 +213,7 @@ namespace QuantCDN.Quant
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// Schedule name
+        /// Schedule name. If not provided, defaults to 'Schedule {crawler_name}'.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -237,7 +237,7 @@ namespace QuantCDN.Quant
         public Input<int>? ProjectId { get; set; }
 
         /// <summary>
-        /// Cron schedule string
+        /// Standard Unix cron expression with 5 space-separated fields: minute, hour, day-of-month, month, day-of-week. Example: 0 2 * * * for daily at 2 AM.
         /// </summary>
         [Input("scheduleCronString")]
         public Input<string>? ScheduleCronString { get; set; }

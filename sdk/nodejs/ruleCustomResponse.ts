@@ -40,6 +40,18 @@ export class RuleCustomResponse extends pulumi.CustomResource {
     declare public /*out*/ readonly action: pulumi.Output<string>;
     declare public /*out*/ readonly actionConfig: pulumi.Output<outputs.RuleCustomResponseActionConfig>;
     /**
+     * ASN filter type (asn_is, asn_is_not, any)
+     */
+    declare public readonly asn: pulumi.Output<string>;
+    /**
+     * Allowed AS numbers
+     */
+    declare public readonly asnIs: pulumi.Output<string[]>;
+    /**
+     * Excluded AS numbers
+     */
+    declare public readonly asnIsNots: pulumi.Output<string[]>;
+    /**
      * Legacy field for response body (deprecated)
      */
     declare public readonly body: pulumi.Output<string>;
@@ -151,6 +163,9 @@ export class RuleCustomResponse extends pulumi.CustomResource {
             const state = argsOrState as RuleCustomResponseState | undefined;
             resourceInputs["action"] = state?.action;
             resourceInputs["actionConfig"] = state?.actionConfig;
+            resourceInputs["asn"] = state?.asn;
+            resourceInputs["asnIs"] = state?.asnIs;
+            resourceInputs["asnIsNots"] = state?.asnIsNots;
             resourceInputs["body"] = state?.body;
             resourceInputs["country"] = state?.country;
             resourceInputs["countryIs"] = state?.countryIs;
@@ -186,6 +201,9 @@ export class RuleCustomResponse extends pulumi.CustomResource {
             if (args?.urls === undefined && !opts.urn) {
                 throw new Error("Missing required property 'urls'");
             }
+            resourceInputs["asn"] = args?.asn;
+            resourceInputs["asnIs"] = args?.asnIs;
+            resourceInputs["asnIsNots"] = args?.asnIsNots;
             resourceInputs["body"] = args?.body;
             resourceInputs["country"] = args?.country;
             resourceInputs["countryIs"] = args?.countryIs;
@@ -227,6 +245,18 @@ export interface RuleCustomResponseState {
      */
     action?: pulumi.Input<string>;
     actionConfig?: pulumi.Input<inputs.RuleCustomResponseActionConfig>;
+    /**
+     * ASN filter type (asn_is, asn_is_not, any)
+     */
+    asn?: pulumi.Input<string>;
+    /**
+     * Allowed AS numbers
+     */
+    asnIs?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Excluded AS numbers
+     */
+    asnIsNots?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Legacy field for response body (deprecated)
      */
@@ -329,6 +359,18 @@ export interface RuleCustomResponseState {
  * The set of arguments for constructing a RuleCustomResponse resource.
  */
 export interface RuleCustomResponseArgs {
+    /**
+     * ASN filter type (asn_is, asn_is_not, any)
+     */
+    asn?: pulumi.Input<string>;
+    /**
+     * Allowed AS numbers
+     */
+    asnIs?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Excluded AS numbers
+     */
+    asnIsNots?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Legacy field for response body (deprecated)
      */

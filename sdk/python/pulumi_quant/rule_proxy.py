@@ -29,6 +29,9 @@ class RuleProxyArgs:
                  application_name: Optional[pulumi.Input[_builtins.str]] = None,
                  application_port: Optional[pulumi.Input[_builtins.int]] = None,
                  application_proxy: Optional[pulumi.Input[_builtins.bool]] = None,
+                 asn: Optional[pulumi.Input[_builtins.str]] = None,
+                 asn_is: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 asn_is_nots: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  auth_pass: Optional[pulumi.Input[_builtins.str]] = None,
                  auth_user: Optional[pulumi.Input[_builtins.str]] = None,
                  cache_lifetime: Optional[pulumi.Input[_builtins.str]] = None,
@@ -75,6 +78,9 @@ class RuleProxyArgs:
         :param pulumi.Input[_builtins.str] application_name: Quant Cloud application name (required when application_proxy is true)
         :param pulumi.Input[_builtins.int] application_port: Quant Cloud application port (required when application_proxy is true)
         :param pulumi.Input[_builtins.bool] application_proxy: Enable Quant Cloud application proxy mode
+        :param pulumi.Input[_builtins.str] asn: ASN filter type (asn_is, asn_is_not, any)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] asn_is: Allowed AS numbers
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] asn_is_nots: Excluded AS numbers
         :param pulumi.Input[_builtins.str] auth_pass: Basic auth password
         :param pulumi.Input[_builtins.str] auth_user: Basic auth username
         :param pulumi.Input[_builtins.str] cache_lifetime: Cache lifetime
@@ -121,6 +127,12 @@ class RuleProxyArgs:
             pulumi.set(__self__, "application_port", application_port)
         if application_proxy is not None:
             pulumi.set(__self__, "application_proxy", application_proxy)
+        if asn is not None:
+            pulumi.set(__self__, "asn", asn)
+        if asn_is is not None:
+            pulumi.set(__self__, "asn_is", asn_is)
+        if asn_is_nots is not None:
+            pulumi.set(__self__, "asn_is_nots", asn_is_nots)
         if auth_pass is not None:
             pulumi.set(__self__, "auth_pass", auth_pass)
         if auth_user is not None:
@@ -287,6 +299,42 @@ class RuleProxyArgs:
     @application_proxy.setter
     def application_proxy(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "application_proxy", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def asn(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        ASN filter type (asn_is, asn_is_not, any)
+        """
+        return pulumi.get(self, "asn")
+
+    @asn.setter
+    def asn(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "asn", value)
+
+    @_builtins.property
+    @pulumi.getter(name="asnIs")
+    def asn_is(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Allowed AS numbers
+        """
+        return pulumi.get(self, "asn_is")
+
+    @asn_is.setter
+    def asn_is(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "asn_is", value)
+
+    @_builtins.property
+    @pulumi.getter(name="asnIsNots")
+    def asn_is_nots(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Excluded AS numbers
+        """
+        return pulumi.get(self, "asn_is_nots")
+
+    @asn_is_nots.setter
+    def asn_is_nots(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "asn_is_nots", value)
 
     @_builtins.property
     @pulumi.getter(name="authPass")
@@ -710,6 +758,9 @@ class _RuleProxyState:
                  application_name: Optional[pulumi.Input[_builtins.str]] = None,
                  application_port: Optional[pulumi.Input[_builtins.int]] = None,
                  application_proxy: Optional[pulumi.Input[_builtins.bool]] = None,
+                 asn: Optional[pulumi.Input[_builtins.str]] = None,
+                 asn_is: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 asn_is_nots: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  auth_pass: Optional[pulumi.Input[_builtins.str]] = None,
                  auth_user: Optional[pulumi.Input[_builtins.str]] = None,
                  cache_lifetime: Optional[pulumi.Input[_builtins.str]] = None,
@@ -759,6 +810,9 @@ class _RuleProxyState:
         :param pulumi.Input[_builtins.str] application_name: Quant Cloud application name (required when application_proxy is true)
         :param pulumi.Input[_builtins.int] application_port: Quant Cloud application port (required when application_proxy is true)
         :param pulumi.Input[_builtins.bool] application_proxy: Enable Quant Cloud application proxy mode
+        :param pulumi.Input[_builtins.str] asn: ASN filter type (asn_is, asn_is_not, any)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] asn_is: Allowed AS numbers
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] asn_is_nots: Excluded AS numbers
         :param pulumi.Input[_builtins.str] auth_pass: Basic auth password
         :param pulumi.Input[_builtins.str] auth_user: Basic auth username
         :param pulumi.Input[_builtins.str] cache_lifetime: Cache lifetime
@@ -811,6 +865,12 @@ class _RuleProxyState:
             pulumi.set(__self__, "application_port", application_port)
         if application_proxy is not None:
             pulumi.set(__self__, "application_proxy", application_proxy)
+        if asn is not None:
+            pulumi.set(__self__, "asn", asn)
+        if asn_is is not None:
+            pulumi.set(__self__, "asn_is", asn_is)
+        if asn_is_nots is not None:
+            pulumi.set(__self__, "asn_is_nots", asn_is_nots)
         if auth_pass is not None:
             pulumi.set(__self__, "auth_pass", auth_pass)
         if auth_user is not None:
@@ -972,6 +1032,42 @@ class _RuleProxyState:
     @application_proxy.setter
     def application_proxy(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "application_proxy", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def asn(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        ASN filter type (asn_is, asn_is_not, any)
+        """
+        return pulumi.get(self, "asn")
+
+    @asn.setter
+    def asn(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "asn", value)
+
+    @_builtins.property
+    @pulumi.getter(name="asnIs")
+    def asn_is(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Allowed AS numbers
+        """
+        return pulumi.get(self, "asn_is")
+
+    @asn_is.setter
+    def asn_is(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "asn_is", value)
+
+    @_builtins.property
+    @pulumi.getter(name="asnIsNots")
+    def asn_is_nots(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Excluded AS numbers
+        """
+        return pulumi.get(self, "asn_is_nots")
+
+    @asn_is_nots.setter
+    def asn_is_nots(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "asn_is_nots", value)
 
     @_builtins.property
     @pulumi.getter(name="authPass")
@@ -1456,6 +1552,9 @@ class RuleProxy(pulumi.CustomResource):
                  application_name: Optional[pulumi.Input[_builtins.str]] = None,
                  application_port: Optional[pulumi.Input[_builtins.int]] = None,
                  application_proxy: Optional[pulumi.Input[_builtins.bool]] = None,
+                 asn: Optional[pulumi.Input[_builtins.str]] = None,
+                 asn_is: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 asn_is_nots: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  auth_pass: Optional[pulumi.Input[_builtins.str]] = None,
                  auth_user: Optional[pulumi.Input[_builtins.str]] = None,
                  cache_lifetime: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1505,6 +1604,9 @@ class RuleProxy(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] application_name: Quant Cloud application name (required when application_proxy is true)
         :param pulumi.Input[_builtins.int] application_port: Quant Cloud application port (required when application_proxy is true)
         :param pulumi.Input[_builtins.bool] application_proxy: Enable Quant Cloud application proxy mode
+        :param pulumi.Input[_builtins.str] asn: ASN filter type (asn_is, asn_is_not, any)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] asn_is: Allowed AS numbers
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] asn_is_nots: Excluded AS numbers
         :param pulumi.Input[_builtins.str] auth_pass: Basic auth password
         :param pulumi.Input[_builtins.str] auth_user: Basic auth username
         :param pulumi.Input[_builtins.str] cache_lifetime: Cache lifetime
@@ -1570,6 +1672,9 @@ class RuleProxy(pulumi.CustomResource):
                  application_name: Optional[pulumi.Input[_builtins.str]] = None,
                  application_port: Optional[pulumi.Input[_builtins.int]] = None,
                  application_proxy: Optional[pulumi.Input[_builtins.bool]] = None,
+                 asn: Optional[pulumi.Input[_builtins.str]] = None,
+                 asn_is: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 asn_is_nots: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  auth_pass: Optional[pulumi.Input[_builtins.str]] = None,
                  auth_user: Optional[pulumi.Input[_builtins.str]] = None,
                  cache_lifetime: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1622,6 +1727,9 @@ class RuleProxy(pulumi.CustomResource):
             __props__.__dict__["application_name"] = application_name
             __props__.__dict__["application_port"] = application_port
             __props__.__dict__["application_proxy"] = application_proxy
+            __props__.__dict__["asn"] = asn
+            __props__.__dict__["asn_is"] = asn_is
+            __props__.__dict__["asn_is_nots"] = asn_is_nots
             __props__.__dict__["auth_pass"] = auth_pass
             __props__.__dict__["auth_user"] = auth_user
             __props__.__dict__["cache_lifetime"] = cache_lifetime
@@ -1687,6 +1795,9 @@ class RuleProxy(pulumi.CustomResource):
             application_name: Optional[pulumi.Input[_builtins.str]] = None,
             application_port: Optional[pulumi.Input[_builtins.int]] = None,
             application_proxy: Optional[pulumi.Input[_builtins.bool]] = None,
+            asn: Optional[pulumi.Input[_builtins.str]] = None,
+            asn_is: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            asn_is_nots: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             auth_pass: Optional[pulumi.Input[_builtins.str]] = None,
             auth_user: Optional[pulumi.Input[_builtins.str]] = None,
             cache_lifetime: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1740,6 +1851,9 @@ class RuleProxy(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] application_name: Quant Cloud application name (required when application_proxy is true)
         :param pulumi.Input[_builtins.int] application_port: Quant Cloud application port (required when application_proxy is true)
         :param pulumi.Input[_builtins.bool] application_proxy: Enable Quant Cloud application proxy mode
+        :param pulumi.Input[_builtins.str] asn: ASN filter type (asn_is, asn_is_not, any)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] asn_is: Allowed AS numbers
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] asn_is_nots: Excluded AS numbers
         :param pulumi.Input[_builtins.str] auth_pass: Basic auth password
         :param pulumi.Input[_builtins.str] auth_user: Basic auth username
         :param pulumi.Input[_builtins.str] cache_lifetime: Cache lifetime
@@ -1789,6 +1903,9 @@ class RuleProxy(pulumi.CustomResource):
         __props__.__dict__["application_name"] = application_name
         __props__.__dict__["application_port"] = application_port
         __props__.__dict__["application_proxy"] = application_proxy
+        __props__.__dict__["asn"] = asn
+        __props__.__dict__["asn_is"] = asn_is
+        __props__.__dict__["asn_is_nots"] = asn_is_nots
         __props__.__dict__["auth_pass"] = auth_pass
         __props__.__dict__["auth_user"] = auth_user
         __props__.__dict__["cache_lifetime"] = cache_lifetime
@@ -1883,6 +2000,30 @@ class RuleProxy(pulumi.CustomResource):
         Enable Quant Cloud application proxy mode
         """
         return pulumi.get(self, "application_proxy")
+
+    @_builtins.property
+    @pulumi.getter
+    def asn(self) -> pulumi.Output[_builtins.str]:
+        """
+        ASN filter type (asn_is, asn_is_not, any)
+        """
+        return pulumi.get(self, "asn")
+
+    @_builtins.property
+    @pulumi.getter(name="asnIs")
+    def asn_is(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        Allowed AS numbers
+        """
+        return pulumi.get(self, "asn_is")
+
+    @_builtins.property
+    @pulumi.getter(name="asnIsNots")
+    def asn_is_nots(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        Excluded AS numbers
+        """
+        return pulumi.get(self, "asn_is_nots")
 
     @_builtins.property
     @pulumi.getter(name="authPass")

@@ -40,6 +40,8 @@ class ProjectArgs:
         :param pulumi.Input[_builtins.bool] disable_revisions: Disable revisions
         :param pulumi.Input[_builtins.str] machine_name: Project machine name
         :param pulumi.Input[_builtins.str] name: Project name
+        :param pulumi.Input[_builtins.str] organization: Organization identifier
+        :param pulumi.Input[_builtins.str] project: Project identifier
         :param pulumi.Input[_builtins.str] region: Project region
         """
         if allow_query_params is not None:
@@ -152,6 +154,9 @@ class ProjectArgs:
     @_builtins.property
     @pulumi.getter
     def organization(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Organization identifier
+        """
         return pulumi.get(self, "organization")
 
     @organization.setter
@@ -161,6 +166,9 @@ class ProjectArgs:
     @_builtins.property
     @pulumi.getter
     def project(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Project identifier
+        """
         return pulumi.get(self, "project")
 
     @project.setter
@@ -215,6 +223,8 @@ class _ProjectState:
         :param pulumi.Input[_builtins.bool] disable_revisions: Disable revisions
         :param pulumi.Input[_builtins.str] machine_name: Project machine name
         :param pulumi.Input[_builtins.str] name: Project name
+        :param pulumi.Input[_builtins.str] organization: Organization identifier
+        :param pulumi.Input[_builtins.str] project: Project identifier
         :param pulumi.Input[_builtins.str] region: Project region
         :param pulumi.Input[_builtins.str] uuid: Project UUID
         :param pulumi.Input[_builtins.str] write_token: Write token for API access
@@ -333,6 +343,9 @@ class _ProjectState:
     @_builtins.property
     @pulumi.getter
     def organization(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Organization identifier
+        """
         return pulumi.get(self, "organization")
 
     @organization.setter
@@ -342,6 +355,9 @@ class _ProjectState:
     @_builtins.property
     @pulumi.getter
     def project(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Project identifier
+        """
         return pulumi.get(self, "project")
 
     @project.setter
@@ -424,6 +440,8 @@ class Project(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] disable_revisions: Disable revisions
         :param pulumi.Input[_builtins.str] machine_name: Project machine name
         :param pulumi.Input[_builtins.str] name: Project name
+        :param pulumi.Input[_builtins.str] organization: Organization identifier
+        :param pulumi.Input[_builtins.str] project: Project identifier
         :param pulumi.Input[_builtins.str] region: Project region
         """
         ...
@@ -520,6 +538,8 @@ class Project(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] disable_revisions: Disable revisions
         :param pulumi.Input[_builtins.str] machine_name: Project machine name
         :param pulumi.Input[_builtins.str] name: Project name
+        :param pulumi.Input[_builtins.str] organization: Organization identifier
+        :param pulumi.Input[_builtins.str] project: Project identifier
         :param pulumi.Input[_builtins.str] region: Project region
         :param pulumi.Input[_builtins.str] uuid: Project UUID
         :param pulumi.Input[_builtins.str] write_token: Write token for API access
@@ -602,11 +622,17 @@ class Project(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter
     def organization(self) -> pulumi.Output[_builtins.str]:
+        """
+        Organization identifier
+        """
         return pulumi.get(self, "organization")
 
     @_builtins.property
     @pulumi.getter
     def project(self) -> pulumi.Output[_builtins.str]:
+        """
+        Project identifier
+        """
         return pulumi.get(self, "project")
 
     @_builtins.property

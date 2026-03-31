@@ -18,6 +18,12 @@ type RuleCustomResponse struct {
 	// Rule action
 	Action       pulumi.StringOutput                  `pulumi:"action"`
 	ActionConfig RuleCustomResponseActionConfigOutput `pulumi:"actionConfig"`
+	// ASN filter type (asn_is, asn_is_not, any)
+	Asn pulumi.StringOutput `pulumi:"asn"`
+	// Allowed AS numbers
+	AsnIs pulumi.StringArrayOutput `pulumi:"asnIs"`
+	// Excluded AS numbers
+	AsnIsNots pulumi.StringArrayOutput `pulumi:"asnIsNots"`
 	// Legacy field for response body (deprecated)
 	Body pulumi.StringOutput `pulumi:"body"`
 	// Country filter type (country_is, country_is_not, any)
@@ -110,6 +116,12 @@ type ruleCustomResponseState struct {
 	// Rule action
 	Action       *string                         `pulumi:"action"`
 	ActionConfig *RuleCustomResponseActionConfig `pulumi:"actionConfig"`
+	// ASN filter type (asn_is, asn_is_not, any)
+	Asn *string `pulumi:"asn"`
+	// Allowed AS numbers
+	AsnIs []string `pulumi:"asnIs"`
+	// Excluded AS numbers
+	AsnIsNots []string `pulumi:"asnIsNots"`
 	// Legacy field for response body (deprecated)
 	Body *string `pulumi:"body"`
 	// Country filter type (country_is, country_is_not, any)
@@ -164,6 +176,12 @@ type RuleCustomResponseState struct {
 	// Rule action
 	Action       pulumi.StringPtrInput
 	ActionConfig RuleCustomResponseActionConfigPtrInput
+	// ASN filter type (asn_is, asn_is_not, any)
+	Asn pulumi.StringPtrInput
+	// Allowed AS numbers
+	AsnIs pulumi.StringArrayInput
+	// Excluded AS numbers
+	AsnIsNots pulumi.StringArrayInput
 	// Legacy field for response body (deprecated)
 	Body pulumi.StringPtrInput
 	// Country filter type (country_is, country_is_not, any)
@@ -219,6 +237,12 @@ func (RuleCustomResponseState) ElementType() reflect.Type {
 }
 
 type ruleCustomResponseArgs struct {
+	// ASN filter type (asn_is, asn_is_not, any)
+	Asn *string `pulumi:"asn"`
+	// Allowed AS numbers
+	AsnIs []string `pulumi:"asnIs"`
+	// Excluded AS numbers
+	AsnIsNots []string `pulumi:"asnIsNots"`
 	// Legacy field for response body (deprecated)
 	Body *string `pulumi:"body"`
 	// Country filter type (country_is, country_is_not, any)
@@ -267,6 +291,12 @@ type ruleCustomResponseArgs struct {
 
 // The set of arguments for constructing a RuleCustomResponse resource.
 type RuleCustomResponseArgs struct {
+	// ASN filter type (asn_is, asn_is_not, any)
+	Asn pulumi.StringPtrInput
+	// Allowed AS numbers
+	AsnIs pulumi.StringArrayInput
+	// Excluded AS numbers
+	AsnIsNots pulumi.StringArrayInput
 	// Legacy field for response body (deprecated)
 	Body pulumi.StringPtrInput
 	// Country filter type (country_is, country_is_not, any)
@@ -407,6 +437,21 @@ func (o RuleCustomResponseOutput) Action() pulumi.StringOutput {
 
 func (o RuleCustomResponseOutput) ActionConfig() RuleCustomResponseActionConfigOutput {
 	return o.ApplyT(func(v *RuleCustomResponse) RuleCustomResponseActionConfigOutput { return v.ActionConfig }).(RuleCustomResponseActionConfigOutput)
+}
+
+// ASN filter type (asn_is, asn_is_not, any)
+func (o RuleCustomResponseOutput) Asn() pulumi.StringOutput {
+	return o.ApplyT(func(v *RuleCustomResponse) pulumi.StringOutput { return v.Asn }).(pulumi.StringOutput)
+}
+
+// Allowed AS numbers
+func (o RuleCustomResponseOutput) AsnIs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *RuleCustomResponse) pulumi.StringArrayOutput { return v.AsnIs }).(pulumi.StringArrayOutput)
+}
+
+// Excluded AS numbers
+func (o RuleCustomResponseOutput) AsnIsNots() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *RuleCustomResponse) pulumi.StringArrayOutput { return v.AsnIsNots }).(pulumi.StringArrayOutput)
 }
 
 // Legacy field for response body (deprecated)

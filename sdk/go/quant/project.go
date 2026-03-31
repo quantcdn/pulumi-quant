@@ -27,9 +27,11 @@ type Project struct {
 	// Project machine name
 	MachineName pulumi.StringOutput `pulumi:"machineName"`
 	// Project name
-	Name         pulumi.StringOutput `pulumi:"name"`
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Organization identifier
 	Organization pulumi.StringOutput `pulumi:"organization"`
-	Project      pulumi.StringOutput `pulumi:"project"`
+	// Project identifier
+	Project pulumi.StringOutput `pulumi:"project"`
 	// Project region
 	Region pulumi.StringOutput `pulumi:"region"`
 	// Project UUID
@@ -82,9 +84,11 @@ type projectState struct {
 	// Project machine name
 	MachineName *string `pulumi:"machineName"`
 	// Project name
-	Name         *string `pulumi:"name"`
+	Name *string `pulumi:"name"`
+	// Organization identifier
 	Organization *string `pulumi:"organization"`
-	Project      *string `pulumi:"project"`
+	// Project identifier
+	Project *string `pulumi:"project"`
 	// Project region
 	Region *string `pulumi:"region"`
 	// Project UUID
@@ -108,9 +112,11 @@ type ProjectState struct {
 	// Project machine name
 	MachineName pulumi.StringPtrInput
 	// Project name
-	Name         pulumi.StringPtrInput
+	Name pulumi.StringPtrInput
+	// Organization identifier
 	Organization pulumi.StringPtrInput
-	Project      pulumi.StringPtrInput
+	// Project identifier
+	Project pulumi.StringPtrInput
 	// Project region
 	Region pulumi.StringPtrInput
 	// Project UUID
@@ -138,9 +144,11 @@ type projectArgs struct {
 	// Project machine name
 	MachineName *string `pulumi:"machineName"`
 	// Project name
-	Name         *string `pulumi:"name"`
+	Name *string `pulumi:"name"`
+	// Organization identifier
 	Organization *string `pulumi:"organization"`
-	Project      *string `pulumi:"project"`
+	// Project identifier
+	Project *string `pulumi:"project"`
 	// Project region
 	Region    *string `pulumi:"region"`
 	WithToken *bool   `pulumi:"withToken"`
@@ -161,9 +169,11 @@ type ProjectArgs struct {
 	// Project machine name
 	MachineName pulumi.StringPtrInput
 	// Project name
-	Name         pulumi.StringPtrInput
+	Name pulumi.StringPtrInput
+	// Organization identifier
 	Organization pulumi.StringPtrInput
-	Project      pulumi.StringPtrInput
+	// Project identifier
+	Project pulumi.StringPtrInput
 	// Project region
 	Region    pulumi.StringPtrInput
 	WithToken pulumi.BoolPtrInput
@@ -291,10 +301,12 @@ func (o ProjectOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Project) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Organization identifier
 func (o ProjectOutput) Organization() pulumi.StringOutput {
 	return o.ApplyT(func(v *Project) pulumi.StringOutput { return v.Organization }).(pulumi.StringOutput)
 }
 
+// Project identifier
 func (o ProjectOutput) Project() pulumi.StringOutput {
 	return o.ApplyT(func(v *Project) pulumi.StringOutput { return v.Project }).(pulumi.StringOutput)
 }

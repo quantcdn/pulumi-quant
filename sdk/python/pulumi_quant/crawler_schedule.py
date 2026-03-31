@@ -28,10 +28,10 @@ class CrawlerScheduleArgs:
         """
         The set of arguments for constructing a CrawlerSchedule resource.
 
-        :param pulumi.Input[_builtins.str] schedule_cron_string: Cron schedule string
+        :param pulumi.Input[_builtins.str] schedule_cron_string: Standard Unix cron expression with 5 space-separated fields: minute, hour, day-of-month, month, day-of-week. Example: 0 2 * * * for daily at 2 AM.
         :param pulumi.Input[_builtins.str] crawler: Crawler identifier
         :param pulumi.Input[_builtins.str] crawler_schedule: Crawler schedule identifier
-        :param pulumi.Input[_builtins.str] name: Schedule name
+        :param pulumi.Input[_builtins.str] name: Schedule name. If not provided, defaults to 'Schedule {crawler_name}'.
         :param pulumi.Input[_builtins.str] organization: Organization identifier
         :param pulumi.Input[_builtins.str] project: Project identifier
         """
@@ -51,7 +51,7 @@ class CrawlerScheduleArgs:
     @pulumi.getter(name="scheduleCronString")
     def schedule_cron_string(self) -> pulumi.Input[_builtins.str]:
         """
-        Cron schedule string
+        Standard Unix cron expression with 5 space-separated fields: minute, hour, day-of-month, month, day-of-week. Example: 0 2 * * * for daily at 2 AM.
         """
         return pulumi.get(self, "schedule_cron_string")
 
@@ -87,7 +87,7 @@ class CrawlerScheduleArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Schedule name
+        Schedule name. If not provided, defaults to 'Schedule {crawler_name}'.
         """
         return pulumi.get(self, "name")
 
@@ -144,11 +144,11 @@ class _CrawlerScheduleState:
         :param pulumi.Input[_builtins.str] crawler_schedule: Crawler schedule identifier
         :param pulumi.Input[_builtins.str] crawler_uuid: Crawler UUID
         :param pulumi.Input[_builtins.str] created_at: Creation timestamp
-        :param pulumi.Input[_builtins.str] name: Schedule name
+        :param pulumi.Input[_builtins.str] name: Schedule name. If not provided, defaults to 'Schedule {crawler_name}'.
         :param pulumi.Input[_builtins.str] organization: Organization identifier
         :param pulumi.Input[_builtins.str] project: Project identifier
         :param pulumi.Input[_builtins.int] project_id: Project ID
-        :param pulumi.Input[_builtins.str] schedule_cron_string: Cron schedule string
+        :param pulumi.Input[_builtins.str] schedule_cron_string: Standard Unix cron expression with 5 space-separated fields: minute, hour, day-of-month, month, day-of-week. Example: 0 2 * * * for daily at 2 AM.
         :param pulumi.Input[_builtins.str] updated_at: Last update timestamp
         """
         if crawler is not None:
@@ -252,7 +252,7 @@ class _CrawlerScheduleState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Schedule name
+        Schedule name. If not provided, defaults to 'Schedule {crawler_name}'.
         """
         return pulumi.get(self, "name")
 
@@ -300,7 +300,7 @@ class _CrawlerScheduleState:
     @pulumi.getter(name="scheduleCronString")
     def schedule_cron_string(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Cron schedule string
+        Standard Unix cron expression with 5 space-separated fields: minute, hour, day-of-month, month, day-of-week. Example: 0 2 * * * for daily at 2 AM.
         """
         return pulumi.get(self, "schedule_cron_string")
 
@@ -341,10 +341,10 @@ class CrawlerSchedule(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] crawler: Crawler identifier
         :param pulumi.Input[_builtins.str] crawler_schedule: Crawler schedule identifier
-        :param pulumi.Input[_builtins.str] name: Schedule name
+        :param pulumi.Input[_builtins.str] name: Schedule name. If not provided, defaults to 'Schedule {crawler_name}'.
         :param pulumi.Input[_builtins.str] organization: Organization identifier
         :param pulumi.Input[_builtins.str] project: Project identifier
-        :param pulumi.Input[_builtins.str] schedule_cron_string: Cron schedule string
+        :param pulumi.Input[_builtins.str] schedule_cron_string: Standard Unix cron expression with 5 space-separated fields: minute, hour, day-of-month, month, day-of-week. Example: 0 2 * * * for daily at 2 AM.
         """
         ...
     @overload
@@ -434,11 +434,11 @@ class CrawlerSchedule(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] crawler_schedule: Crawler schedule identifier
         :param pulumi.Input[_builtins.str] crawler_uuid: Crawler UUID
         :param pulumi.Input[_builtins.str] created_at: Creation timestamp
-        :param pulumi.Input[_builtins.str] name: Schedule name
+        :param pulumi.Input[_builtins.str] name: Schedule name. If not provided, defaults to 'Schedule {crawler_name}'.
         :param pulumi.Input[_builtins.str] organization: Organization identifier
         :param pulumi.Input[_builtins.str] project: Project identifier
         :param pulumi.Input[_builtins.int] project_id: Project ID
-        :param pulumi.Input[_builtins.str] schedule_cron_string: Cron schedule string
+        :param pulumi.Input[_builtins.str] schedule_cron_string: Standard Unix cron expression with 5 space-separated fields: minute, hour, day-of-month, month, day-of-week. Example: 0 2 * * * for daily at 2 AM.
         :param pulumi.Input[_builtins.str] updated_at: Last update timestamp
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -511,7 +511,7 @@ class CrawlerSchedule(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
         """
-        Schedule name
+        Schedule name. If not provided, defaults to 'Schedule {crawler_name}'.
         """
         return pulumi.get(self, "name")
 
@@ -543,7 +543,7 @@ class CrawlerSchedule(pulumi.CustomResource):
     @pulumi.getter(name="scheduleCronString")
     def schedule_cron_string(self) -> pulumi.Output[_builtins.str]:
         """
-        Cron schedule string
+        Standard Unix cron expression with 5 space-separated fields: minute, hour, day-of-month, month, day-of-week. Example: 0 2 * * * for daily at 2 AM.
         """
         return pulumi.get(self, "schedule_cron_string")
 

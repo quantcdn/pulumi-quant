@@ -57,7 +57,7 @@ export class CrawlerSchedule extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
-     * Schedule name
+     * Schedule name. If not provided, defaults to 'Schedule {crawler_name}'.
      */
     declare public readonly name: pulumi.Output<string>;
     /**
@@ -73,7 +73,7 @@ export class CrawlerSchedule extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly projectId: pulumi.Output<number>;
     /**
-     * Cron schedule string
+     * Standard Unix cron expression with 5 space-separated fields: minute, hour, day-of-month, month, day-of-week. Example: 0 2 * * * for daily at 2 AM.
      */
     declare public readonly scheduleCronString: pulumi.Output<string>;
     /**
@@ -158,7 +158,7 @@ export interface CrawlerScheduleState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * Schedule name
+     * Schedule name. If not provided, defaults to 'Schedule {crawler_name}'.
      */
     name?: pulumi.Input<string>;
     /**
@@ -174,7 +174,7 @@ export interface CrawlerScheduleState {
      */
     projectId?: pulumi.Input<number>;
     /**
-     * Cron schedule string
+     * Standard Unix cron expression with 5 space-separated fields: minute, hour, day-of-month, month, day-of-week. Example: 0 2 * * * for daily at 2 AM.
      */
     scheduleCronString?: pulumi.Input<string>;
     /**
@@ -196,7 +196,7 @@ export interface CrawlerScheduleArgs {
      */
     crawlerSchedule?: pulumi.Input<string>;
     /**
-     * Schedule name
+     * Schedule name. If not provided, defaults to 'Schedule {crawler_name}'.
      */
     name?: pulumi.Input<string>;
     /**
@@ -208,7 +208,7 @@ export interface CrawlerScheduleArgs {
      */
     project?: pulumi.Input<string>;
     /**
-     * Cron schedule string
+     * Standard Unix cron expression with 5 space-separated fields: minute, hour, day-of-month, month, day-of-week. Example: 0 2 * * * for daily at 2 AM.
      */
     scheduleCronString: pulumi.Input<string>;
 }

@@ -53,6 +53,7 @@ class CrawlerArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_domains: Allowed domains for multi-domain crawling, automatically enables merge_domains
         :param pulumi.Input['CrawlerAssetsArgs'] assets: Asset harvesting configuration
         :param pulumi.Input[_builtins.bool] browser_mode: Enable browser mode
+        :param pulumi.Input[_builtins.str] crawler: The UUID of the crawler
         :param pulumi.Input[_builtins.float] delay: Delay between requests in seconds (default: 4, non-default requires verification)
         :param pulumi.Input[_builtins.int] depth: Maximum crawl depth, -1 for unlimited
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] excludes: URL patterns to exclude (regex)
@@ -175,6 +176,9 @@ class CrawlerArgs:
     @_builtins.property
     @pulumi.getter
     def crawler(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The UUID of the crawler
+        """
         return pulumi.get(self, "crawler")
 
     @crawler.setter
@@ -465,6 +469,7 @@ class _CrawlerState:
         :param pulumi.Input['CrawlerAssetsArgs'] assets: Asset harvesting configuration
         :param pulumi.Input[_builtins.bool] browser_mode: Enable browser mode
         :param pulumi.Input[_builtins.str] config: Crawler configuration (YAML)
+        :param pulumi.Input[_builtins.str] crawler: The UUID of the crawler
         :param pulumi.Input[_builtins.str] created_at: Creation timestamp
         :param pulumi.Input[_builtins.float] delay: Delay between requests in seconds (default: 4, non-default requires verification)
         :param pulumi.Input[_builtins.str] deleted_at: Deletion timestamp
@@ -612,6 +617,9 @@ class _CrawlerState:
     @_builtins.property
     @pulumi.getter
     def crawler(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The UUID of the crawler
+        """
         return pulumi.get(self, "crawler")
 
     @crawler.setter
@@ -995,6 +1003,7 @@ class Crawler(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_domains: Allowed domains for multi-domain crawling, automatically enables merge_domains
         :param pulumi.Input[Union['CrawlerAssetsArgs', 'CrawlerAssetsArgsDict']] assets: Asset harvesting configuration
         :param pulumi.Input[_builtins.bool] browser_mode: Enable browser mode
+        :param pulumi.Input[_builtins.str] crawler: The UUID of the crawler
         :param pulumi.Input[_builtins.float] delay: Delay between requests in seconds (default: 4, non-default requires verification)
         :param pulumi.Input[_builtins.int] depth: Maximum crawl depth, -1 for unlimited
         :param pulumi.Input[_builtins.str] domain: Domain to crawl
@@ -1164,6 +1173,7 @@ class Crawler(pulumi.CustomResource):
         :param pulumi.Input[Union['CrawlerAssetsArgs', 'CrawlerAssetsArgsDict']] assets: Asset harvesting configuration
         :param pulumi.Input[_builtins.bool] browser_mode: Enable browser mode
         :param pulumi.Input[_builtins.str] config: Crawler configuration (YAML)
+        :param pulumi.Input[_builtins.str] crawler: The UUID of the crawler
         :param pulumi.Input[_builtins.str] created_at: Creation timestamp
         :param pulumi.Input[_builtins.float] delay: Delay between requests in seconds (default: 4, non-default requires verification)
         :param pulumi.Input[_builtins.str] deleted_at: Deletion timestamp
@@ -1267,6 +1277,9 @@ class Crawler(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter
     def crawler(self) -> pulumi.Output[_builtins.str]:
+        """
+        The UUID of the crawler
+        """
         return pulumi.get(self, "crawler")
 
     @_builtins.property
