@@ -18,6 +18,12 @@ type RuleContentFilter struct {
 	// Rule action
 	Action       pulumi.StringOutput                 `pulumi:"action"`
 	ActionConfig RuleContentFilterActionConfigOutput `pulumi:"actionConfig"`
+	// ASN filter type (asn_is, asn_is_not, any)
+	Asn pulumi.StringOutput `pulumi:"asn"`
+	// Allowed AS numbers
+	AsnIs pulumi.StringArrayOutput `pulumi:"asnIs"`
+	// Excluded AS numbers
+	AsnIsNots pulumi.StringArrayOutput `pulumi:"asnIsNots"`
 	// Country filter type (country_is, country_is_not, any)
 	Country pulumi.StringOutput `pulumi:"country"`
 	// Allowed countries
@@ -104,6 +110,12 @@ type ruleContentFilterState struct {
 	// Rule action
 	Action       *string                        `pulumi:"action"`
 	ActionConfig *RuleContentFilterActionConfig `pulumi:"actionConfig"`
+	// ASN filter type (asn_is, asn_is_not, any)
+	Asn *string `pulumi:"asn"`
+	// Allowed AS numbers
+	AsnIs []string `pulumi:"asnIs"`
+	// Excluded AS numbers
+	AsnIsNots []string `pulumi:"asnIsNots"`
 	// Country filter type (country_is, country_is_not, any)
 	Country *string `pulumi:"country"`
 	// Allowed countries
@@ -152,6 +164,12 @@ type RuleContentFilterState struct {
 	// Rule action
 	Action       pulumi.StringPtrInput
 	ActionConfig RuleContentFilterActionConfigPtrInput
+	// ASN filter type (asn_is, asn_is_not, any)
+	Asn pulumi.StringPtrInput
+	// Allowed AS numbers
+	AsnIs pulumi.StringArrayInput
+	// Excluded AS numbers
+	AsnIsNots pulumi.StringArrayInput
 	// Country filter type (country_is, country_is_not, any)
 	Country pulumi.StringPtrInput
 	// Allowed countries
@@ -201,6 +219,12 @@ func (RuleContentFilterState) ElementType() reflect.Type {
 }
 
 type ruleContentFilterArgs struct {
+	// ASN filter type (asn_is, asn_is_not, any)
+	Asn *string `pulumi:"asn"`
+	// Allowed AS numbers
+	AsnIs []string `pulumi:"asnIs"`
+	// Excluded AS numbers
+	AsnIsNots []string `pulumi:"asnIsNots"`
 	// Country filter type (country_is, country_is_not, any)
 	Country *string `pulumi:"country"`
 	// Allowed countries
@@ -243,6 +267,12 @@ type ruleContentFilterArgs struct {
 
 // The set of arguments for constructing a RuleContentFilter resource.
 type RuleContentFilterArgs struct {
+	// ASN filter type (asn_is, asn_is_not, any)
+	Asn pulumi.StringPtrInput
+	// Allowed AS numbers
+	AsnIs pulumi.StringArrayInput
+	// Excluded AS numbers
+	AsnIsNots pulumi.StringArrayInput
 	// Country filter type (country_is, country_is_not, any)
 	Country pulumi.StringPtrInput
 	// Allowed countries
@@ -377,6 +407,21 @@ func (o RuleContentFilterOutput) Action() pulumi.StringOutput {
 
 func (o RuleContentFilterOutput) ActionConfig() RuleContentFilterActionConfigOutput {
 	return o.ApplyT(func(v *RuleContentFilter) RuleContentFilterActionConfigOutput { return v.ActionConfig }).(RuleContentFilterActionConfigOutput)
+}
+
+// ASN filter type (asn_is, asn_is_not, any)
+func (o RuleContentFilterOutput) Asn() pulumi.StringOutput {
+	return o.ApplyT(func(v *RuleContentFilter) pulumi.StringOutput { return v.Asn }).(pulumi.StringOutput)
+}
+
+// Allowed AS numbers
+func (o RuleContentFilterOutput) AsnIs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *RuleContentFilter) pulumi.StringArrayOutput { return v.AsnIs }).(pulumi.StringArrayOutput)
+}
+
+// Excluded AS numbers
+func (o RuleContentFilterOutput) AsnIsNots() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *RuleContentFilter) pulumi.StringArrayOutput { return v.AsnIsNots }).(pulumi.StringArrayOutput)
 }
 
 // Country filter type (country_is, country_is_not, any)

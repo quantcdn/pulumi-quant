@@ -1414,7 +1414,8 @@
                     "description": "Crawler configuration (YAML)"
                 },
                 "crawler": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The UUID of the crawler"
                 },
                 "createdAt": {
                     "type": "string",
@@ -1602,7 +1603,8 @@
                     "description": "Enable browser mode"
                 },
                 "crawler": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The UUID of the crawler"
                 },
                 "delay": {
                     "type": "number",
@@ -1736,7 +1738,8 @@
                         "description": "Crawler configuration (YAML)"
                     },
                     "crawler": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The UUID of the crawler"
                     },
                     "createdAt": {
                         "type": "string",
@@ -1903,7 +1906,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "Schedule name"
+                    "description": "Schedule name. If not provided, defaults to 'Schedule {crawler_name}'."
                 },
                 "organization": {
                     "type": "string",
@@ -1919,7 +1922,7 @@
                 },
                 "scheduleCronString": {
                     "type": "string",
-                    "description": "Cron schedule string"
+                    "description": "Standard Unix cron expression with 5 space-separated fields: minute, hour, day-of-month, month, day-of-week. Example: 0 2 * * * for daily at 2 AM."
                 },
                 "updatedAt": {
                     "type": "string",
@@ -1951,7 +1954,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "Schedule name"
+                    "description": "Schedule name. If not provided, defaults to 'Schedule {crawler_name}'."
                 },
                 "organization": {
                     "type": "string",
@@ -1963,7 +1966,7 @@
                 },
                 "scheduleCronString": {
                     "type": "string",
-                    "description": "Cron schedule string"
+                    "description": "Standard Unix cron expression with 5 space-separated fields: minute, hour, day-of-month, month, day-of-week. Example: 0 2 * * * for daily at 2 AM."
                 }
             },
             "requiredInputs": [
@@ -1998,7 +2001,7 @@
                     },
                     "name": {
                         "type": "string",
-                        "description": "Schedule name"
+                        "description": "Schedule name. If not provided, defaults to 'Schedule {crawler_name}'."
                     },
                     "organization": {
                         "type": "string",
@@ -2014,7 +2017,7 @@
                     },
                     "scheduleCronString": {
                         "type": "string",
-                        "description": "Cron schedule string"
+                        "description": "Standard Unix cron expression with 5 space-separated fields: minute, hour, day-of-month, month, day-of-week. Example: 0 2 * * * for daily at 2 AM."
                     },
                     "updatedAt": {
                         "type": "string",
@@ -2737,10 +2740,12 @@
                     "description": "Project name"
                 },
                 "organization": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Organization identifier"
                 },
                 "project": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Project identifier"
                 },
                 "region": {
                     "type": "string",
@@ -2803,10 +2808,12 @@
                     "description": "Project name"
                 },
                 "organization": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Organization identifier"
                 },
                 "project": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Project identifier"
                 },
                 "region": {
                     "type": "string",
@@ -2848,10 +2855,12 @@
                         "description": "Project name"
                     },
                     "organization": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Organization identifier"
                     },
                     "project": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Project identifier"
                     },
                     "region": {
                         "type": "string",
@@ -3668,6 +3677,24 @@
                 "actionConfig": {
                     "$ref": "#/types/quant:index/RuleContentFilterActionConfig:RuleContentFilterActionConfig"
                 },
+                "asn": {
+                    "type": "string",
+                    "description": "ASN filter type (asn_is, asn_is_not, any)"
+                },
+                "asnIs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Allowed AS numbers"
+                },
+                "asnIsNots": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Excluded AS numbers"
+                },
                 "country": {
                     "type": "string",
                     "description": "Country filter type (country_is, country_is_not, any)"
@@ -3780,6 +3807,9 @@
             "required": [
                 "action",
                 "actionConfig",
+                "asn",
+                "asnIs",
+                "asnIsNots",
                 "country",
                 "countryIs",
                 "countryIsNots",
@@ -3803,6 +3833,24 @@
                 "weight"
             ],
             "inputProperties": {
+                "asn": {
+                    "type": "string",
+                    "description": "ASN filter type (asn_is, asn_is_not, any)"
+                },
+                "asnIs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Allowed AS numbers"
+                },
+                "asnIsNots": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Excluded AS numbers"
+                },
                 "country": {
                     "type": "string",
                     "description": "Country filter type (country_is, country_is_not, any)"
@@ -3918,6 +3966,24 @@
                     },
                     "actionConfig": {
                         "$ref": "#/types/quant:index/RuleContentFilterActionConfig:RuleContentFilterActionConfig"
+                    },
+                    "asn": {
+                        "type": "string",
+                        "description": "ASN filter type (asn_is, asn_is_not, any)"
+                    },
+                    "asnIs": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Allowed AS numbers"
+                    },
+                    "asnIsNots": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Excluded AS numbers"
                     },
                     "country": {
                         "type": "string",
@@ -4039,6 +4105,24 @@
                 },
                 "actionConfig": {
                     "$ref": "#/types/quant:index/RuleCustomResponseActionConfig:RuleCustomResponseActionConfig"
+                },
+                "asn": {
+                    "type": "string",
+                    "description": "ASN filter type (asn_is, asn_is_not, any)"
+                },
+                "asnIs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Allowed AS numbers"
+                },
+                "asnIsNots": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Excluded AS numbers"
                 },
                 "body": {
                     "type": "string",
@@ -4164,6 +4248,9 @@
             "required": [
                 "action",
                 "actionConfig",
+                "asn",
+                "asnIs",
+                "asnIsNots",
                 "body",
                 "country",
                 "countryIs",
@@ -4190,6 +4277,24 @@
                 "weight"
             ],
             "inputProperties": {
+                "asn": {
+                    "type": "string",
+                    "description": "ASN filter type (asn_is, asn_is_not, any)"
+                },
+                "asnIs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Allowed AS numbers"
+                },
+                "asnIsNots": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Excluded AS numbers"
+                },
                 "body": {
                     "type": "string",
                     "description": "Legacy field for response body (deprecated)"
@@ -4317,6 +4422,24 @@
                     },
                     "actionConfig": {
                         "$ref": "#/types/quant:index/RuleCustomResponseActionConfig:RuleCustomResponseActionConfig"
+                    },
+                    "asn": {
+                        "type": "string",
+                        "description": "ASN filter type (asn_is, asn_is_not, any)"
+                    },
+                    "asnIs": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Allowed AS numbers"
+                    },
+                    "asnIsNots": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Excluded AS numbers"
                     },
                     "body": {
                         "type": "string",
@@ -4451,6 +4574,24 @@
                 "actionConfig": {
                     "$ref": "#/types/quant:index/RuleFunctionActionConfig:RuleFunctionActionConfig"
                 },
+                "asn": {
+                    "type": "string",
+                    "description": "ASN filter type (asn_is, asn_is_not, any)"
+                },
+                "asnIs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Allowed AS numbers"
+                },
+                "asnIsNots": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Excluded AS numbers"
+                },
                 "country": {
                     "type": "string",
                     "description": "Country filter type (country_is, country_is_not, any)"
@@ -4563,6 +4704,9 @@
             "required": [
                 "action",
                 "actionConfig",
+                "asn",
+                "asnIs",
+                "asnIsNots",
                 "country",
                 "countryIs",
                 "countryIsNots",
@@ -4586,6 +4730,24 @@
                 "weight"
             ],
             "inputProperties": {
+                "asn": {
+                    "type": "string",
+                    "description": "ASN filter type (asn_is, asn_is_not, any)"
+                },
+                "asnIs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Allowed AS numbers"
+                },
+                "asnIsNots": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Excluded AS numbers"
+                },
                 "country": {
                     "type": "string",
                     "description": "Country filter type (country_is, country_is_not, any)"
@@ -4701,6 +4863,24 @@
                     },
                     "actionConfig": {
                         "$ref": "#/types/quant:index/RuleFunctionActionConfig:RuleFunctionActionConfig"
+                    },
+                    "asn": {
+                        "type": "string",
+                        "description": "ASN filter type (asn_is, asn_is_not, any)"
+                    },
+                    "asnIs": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Allowed AS numbers"
+                    },
+                    "asnIsNots": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Excluded AS numbers"
                     },
                     "country": {
                         "type": "string",
@@ -5224,6 +5404,24 @@
                     "type": "boolean",
                     "description": "Enable Quant Cloud application proxy mode"
                 },
+                "asn": {
+                    "type": "string",
+                    "description": "ASN filter type (asn_is, asn_is_not, any)"
+                },
+                "asnIs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Allowed AS numbers"
+                },
+                "asnIsNots": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Excluded AS numbers"
+                },
                 "authPass": {
                     "type": "string",
                     "description": "Basic auth password"
@@ -5429,6 +5627,9 @@
                 "applicationName",
                 "applicationPort",
                 "applicationProxy",
+                "asn",
+                "asnIs",
+                "asnIsNots",
                 "authPass",
                 "authUser",
                 "cacheLifetime",
@@ -5490,6 +5691,24 @@
                 "applicationProxy": {
                     "type": "boolean",
                     "description": "Enable Quant Cloud application proxy mode"
+                },
+                "asn": {
+                    "type": "string",
+                    "description": "ASN filter type (asn_is, asn_is_not, any)"
+                },
+                "asnIs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Allowed AS numbers"
+                },
+                "asnIsNots": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Excluded AS numbers"
                 },
                 "authPass": {
                     "type": "string",
@@ -5715,6 +5934,24 @@
                         "type": "boolean",
                         "description": "Enable Quant Cloud application proxy mode"
                     },
+                    "asn": {
+                        "type": "string",
+                        "description": "ASN filter type (asn_is, asn_is_not, any)"
+                    },
+                    "asnIs": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Allowed AS numbers"
+                    },
+                    "asnIsNots": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Excluded AS numbers"
+                    },
                     "authPass": {
                         "type": "string",
                         "description": "Basic auth password"
@@ -5924,6 +6161,24 @@
                 "actionConfig": {
                     "$ref": "#/types/quant:index/RuleRedirectActionConfig:RuleRedirectActionConfig"
                 },
+                "asn": {
+                    "type": "string",
+                    "description": "ASN filter type (asn_is, asn_is_not, any)"
+                },
+                "asnIs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Allowed AS numbers"
+                },
+                "asnIsNots": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Excluded AS numbers"
+                },
                 "country": {
                     "type": "string",
                     "description": "Country filter type (country_is, country_is_not, any)"
@@ -6037,6 +6292,9 @@
             "required": [
                 "action",
                 "actionConfig",
+                "asn",
+                "asnIs",
+                "asnIsNots",
                 "country",
                 "countryIs",
                 "countryIsNots",
@@ -6061,6 +6319,24 @@
                 "weight"
             ],
             "inputProperties": {
+                "asn": {
+                    "type": "string",
+                    "description": "ASN filter type (asn_is, asn_is_not, any)"
+                },
+                "asnIs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Allowed AS numbers"
+                },
+                "asnIsNots": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Excluded AS numbers"
+                },
                 "country": {
                     "type": "string",
                     "description": "Country filter type (country_is, country_is_not, any)"
@@ -6177,6 +6453,24 @@
                     },
                     "actionConfig": {
                         "$ref": "#/types/quant:index/RuleRedirectActionConfig:RuleRedirectActionConfig"
+                    },
+                    "asn": {
+                        "type": "string",
+                        "description": "ASN filter type (asn_is, asn_is_not, any)"
+                    },
+                    "asnIs": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Allowed AS numbers"
+                    },
+                    "asnIsNots": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Excluded AS numbers"
                     },
                     "country": {
                         "type": "string",

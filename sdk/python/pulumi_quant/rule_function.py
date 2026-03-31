@@ -24,6 +24,9 @@ class RuleFunctionArgs:
                  domains: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  fn_uuid: pulumi.Input[_builtins.str],
                  urls: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
+                 asn: Optional[pulumi.Input[_builtins.str]] = None,
+                 asn_is: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 asn_is_nots: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  country: Optional[pulumi.Input[_builtins.str]] = None,
                  country_is: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  country_is_nots: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -46,6 +49,9 @@ class RuleFunctionArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] domains: Domain patterns (default: any)
         :param pulumi.Input[_builtins.str] fn_uuid: Function UUID
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] urls: URL patterns
+        :param pulumi.Input[_builtins.str] asn: ASN filter type (asn_is, asn_is_not, any)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] asn_is: Allowed AS numbers
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] asn_is_nots: Excluded AS numbers
         :param pulumi.Input[_builtins.str] country: Country filter type (country_is, country_is_not, any)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] country_is: Allowed countries
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] country_is_nots: Excluded countries
@@ -66,6 +72,12 @@ class RuleFunctionArgs:
         pulumi.set(__self__, "domains", domains)
         pulumi.set(__self__, "fn_uuid", fn_uuid)
         pulumi.set(__self__, "urls", urls)
+        if asn is not None:
+            pulumi.set(__self__, "asn", asn)
+        if asn_is is not None:
+            pulumi.set(__self__, "asn_is", asn_is)
+        if asn_is_nots is not None:
+            pulumi.set(__self__, "asn_is_nots", asn_is_nots)
         if country is not None:
             pulumi.set(__self__, "country", country)
         if country_is is not None:
@@ -134,6 +146,42 @@ class RuleFunctionArgs:
     @urls.setter
     def urls(self, value: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
         pulumi.set(self, "urls", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def asn(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        ASN filter type (asn_is, asn_is_not, any)
+        """
+        return pulumi.get(self, "asn")
+
+    @asn.setter
+    def asn(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "asn", value)
+
+    @_builtins.property
+    @pulumi.getter(name="asnIs")
+    def asn_is(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Allowed AS numbers
+        """
+        return pulumi.get(self, "asn_is")
+
+    @asn_is.setter
+    def asn_is(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "asn_is", value)
+
+    @_builtins.property
+    @pulumi.getter(name="asnIsNots")
+    def asn_is_nots(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Excluded AS numbers
+        """
+        return pulumi.get(self, "asn_is_nots")
+
+    @asn_is_nots.setter
+    def asn_is_nots(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "asn_is_nots", value)
 
     @_builtins.property
     @pulumi.getter
@@ -333,6 +381,9 @@ class _RuleFunctionState:
     def __init__(__self__, *,
                  action: Optional[pulumi.Input[_builtins.str]] = None,
                  action_config: Optional[pulumi.Input['RuleFunctionActionConfigArgs']] = None,
+                 asn: Optional[pulumi.Input[_builtins.str]] = None,
+                 asn_is: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 asn_is_nots: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  country: Optional[pulumi.Input[_builtins.str]] = None,
                  country_is: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  country_is_nots: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -358,6 +409,9 @@ class _RuleFunctionState:
         Input properties used for looking up and filtering RuleFunction resources.
 
         :param pulumi.Input[_builtins.str] action: Rule action
+        :param pulumi.Input[_builtins.str] asn: ASN filter type (asn_is, asn_is_not, any)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] asn_is: Allowed AS numbers
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] asn_is_nots: Excluded AS numbers
         :param pulumi.Input[_builtins.str] country: Country filter type (country_is, country_is_not, any)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] country_is: Allowed countries
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] country_is_nots: Excluded countries
@@ -384,6 +438,12 @@ class _RuleFunctionState:
             pulumi.set(__self__, "action", action)
         if action_config is not None:
             pulumi.set(__self__, "action_config", action_config)
+        if asn is not None:
+            pulumi.set(__self__, "asn", asn)
+        if asn_is is not None:
+            pulumi.set(__self__, "asn_is", asn_is)
+        if asn_is_nots is not None:
+            pulumi.set(__self__, "asn_is_nots", asn_is_nots)
         if country is not None:
             pulumi.set(__self__, "country", country)
         if country_is is not None:
@@ -447,6 +507,42 @@ class _RuleFunctionState:
     @action_config.setter
     def action_config(self, value: Optional[pulumi.Input['RuleFunctionActionConfigArgs']]):
         pulumi.set(self, "action_config", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def asn(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        ASN filter type (asn_is, asn_is_not, any)
+        """
+        return pulumi.get(self, "asn")
+
+    @asn.setter
+    def asn(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "asn", value)
+
+    @_builtins.property
+    @pulumi.getter(name="asnIs")
+    def asn_is(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Allowed AS numbers
+        """
+        return pulumi.get(self, "asn_is")
+
+    @asn_is.setter
+    def asn_is(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "asn_is", value)
+
+    @_builtins.property
+    @pulumi.getter(name="asnIsNots")
+    def asn_is_nots(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Excluded AS numbers
+        """
+        return pulumi.get(self, "asn_is_nots")
+
+    @asn_is_nots.setter
+    def asn_is_nots(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "asn_is_nots", value)
 
     @_builtins.property
     @pulumi.getter
@@ -707,6 +803,9 @@ class RuleFunction(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 asn: Optional[pulumi.Input[_builtins.str]] = None,
+                 asn_is: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 asn_is_nots: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  country: Optional[pulumi.Input[_builtins.str]] = None,
                  country_is: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  country_is_nots: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -732,6 +831,9 @@ class RuleFunction(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] asn: ASN filter type (asn_is, asn_is_not, any)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] asn_is: Allowed AS numbers
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] asn_is_nots: Excluded AS numbers
         :param pulumi.Input[_builtins.str] country: Country filter type (country_is, country_is_not, any)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] country_is: Allowed countries
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] country_is_nots: Excluded countries
@@ -776,6 +878,9 @@ class RuleFunction(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 asn: Optional[pulumi.Input[_builtins.str]] = None,
+                 asn_is: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 asn_is_nots: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  country: Optional[pulumi.Input[_builtins.str]] = None,
                  country_is: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  country_is_nots: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -804,6 +909,9 @@ class RuleFunction(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = RuleFunctionArgs.__new__(RuleFunctionArgs)
 
+            __props__.__dict__["asn"] = asn
+            __props__.__dict__["asn_is"] = asn_is
+            __props__.__dict__["asn_is_nots"] = asn_is_nots
             __props__.__dict__["country"] = country
             __props__.__dict__["country_is"] = country_is
             __props__.__dict__["country_is_nots"] = country_is_nots
@@ -845,6 +953,9 @@ class RuleFunction(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             action: Optional[pulumi.Input[_builtins.str]] = None,
             action_config: Optional[pulumi.Input[Union['RuleFunctionActionConfigArgs', 'RuleFunctionActionConfigArgsDict']]] = None,
+            asn: Optional[pulumi.Input[_builtins.str]] = None,
+            asn_is: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            asn_is_nots: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             country: Optional[pulumi.Input[_builtins.str]] = None,
             country_is: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             country_is_nots: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -874,6 +985,9 @@ class RuleFunction(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] action: Rule action
+        :param pulumi.Input[_builtins.str] asn: ASN filter type (asn_is, asn_is_not, any)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] asn_is: Allowed AS numbers
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] asn_is_nots: Excluded AS numbers
         :param pulumi.Input[_builtins.str] country: Country filter type (country_is, country_is_not, any)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] country_is: Allowed countries
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] country_is_nots: Excluded countries
@@ -902,6 +1016,9 @@ class RuleFunction(pulumi.CustomResource):
 
         __props__.__dict__["action"] = action
         __props__.__dict__["action_config"] = action_config
+        __props__.__dict__["asn"] = asn
+        __props__.__dict__["asn_is"] = asn_is
+        __props__.__dict__["asn_is_nots"] = asn_is_nots
         __props__.__dict__["country"] = country
         __props__.__dict__["country_is"] = country_is
         __props__.__dict__["country_is_nots"] = country_is_nots
@@ -937,6 +1054,30 @@ class RuleFunction(pulumi.CustomResource):
     @pulumi.getter(name="actionConfig")
     def action_config(self) -> pulumi.Output['outputs.RuleFunctionActionConfig']:
         return pulumi.get(self, "action_config")
+
+    @_builtins.property
+    @pulumi.getter
+    def asn(self) -> pulumi.Output[_builtins.str]:
+        """
+        ASN filter type (asn_is, asn_is_not, any)
+        """
+        return pulumi.get(self, "asn")
+
+    @_builtins.property
+    @pulumi.getter(name="asnIs")
+    def asn_is(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        Allowed AS numbers
+        """
+        return pulumi.get(self, "asn_is")
+
+    @_builtins.property
+    @pulumi.getter(name="asnIsNots")
+    def asn_is_nots(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        Excluded AS numbers
+        """
+        return pulumi.get(self, "asn_is_nots")
 
     @_builtins.property
     @pulumi.getter

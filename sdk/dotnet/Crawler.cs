@@ -37,6 +37,9 @@ namespace QuantCDN.Quant
         [Output("config")]
         public Output<string> Config { get; private set; } = null!;
 
+        /// <summary>
+        /// The UUID of the crawler
+        /// </summary>
         [Output("crawler")]
         public Output<string> Crawler { get; private set; } = null!;
 
@@ -279,6 +282,9 @@ namespace QuantCDN.Quant
         [Input("browserMode")]
         public Input<bool>? BrowserMode { get; set; }
 
+        /// <summary>
+        /// The UUID of the crawler
+        /// </summary>
         [Input("crawler")]
         public Input<string>? Crawler { get; set; }
 
@@ -488,6 +494,9 @@ namespace QuantCDN.Quant
         [Input("config")]
         public Input<string>? Config { get; set; }
 
+        /// <summary>
+        /// The UUID of the crawler
+        /// </summary>
         [Input("crawler")]
         public Input<string>? Crawler { get; set; }
 

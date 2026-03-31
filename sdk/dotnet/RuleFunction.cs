@@ -23,6 +23,24 @@ namespace QuantCDN.Quant
         public Output<Outputs.RuleFunctionActionConfig> ActionConfig { get; private set; } = null!;
 
         /// <summary>
+        /// ASN filter type (asn_is, asn_is_not, any)
+        /// </summary>
+        [Output("asn")]
+        public Output<string> Asn { get; private set; } = null!;
+
+        /// <summary>
+        /// Allowed AS numbers
+        /// </summary>
+        [Output("asnIs")]
+        public Output<ImmutableArray<string>> AsnIs { get; private set; } = null!;
+
+        /// <summary>
+        /// Excluded AS numbers
+        /// </summary>
+        [Output("asnIsNots")]
+        public Output<ImmutableArray<string>> AsnIsNots { get; private set; } = null!;
+
+        /// <summary>
         /// Country filter type (country_is, country_is_not, any)
         /// </summary>
         [Output("country")]
@@ -195,6 +213,36 @@ namespace QuantCDN.Quant
 
     public sealed class RuleFunctionArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// ASN filter type (asn_is, asn_is_not, any)
+        /// </summary>
+        [Input("asn")]
+        public Input<string>? Asn { get; set; }
+
+        [Input("asnIs")]
+        private InputList<string>? _asnIs;
+
+        /// <summary>
+        /// Allowed AS numbers
+        /// </summary>
+        public InputList<string> AsnIs
+        {
+            get => _asnIs ?? (_asnIs = new InputList<string>());
+            set => _asnIs = value;
+        }
+
+        [Input("asnIsNots")]
+        private InputList<string>? _asnIsNots;
+
+        /// <summary>
+        /// Excluded AS numbers
+        /// </summary>
+        public InputList<string> AsnIsNots
+        {
+            get => _asnIsNots ?? (_asnIsNots = new InputList<string>());
+            set => _asnIsNots = value;
+        }
+
         /// <summary>
         /// Country filter type (country_is, country_is_not, any)
         /// </summary>
@@ -373,6 +421,36 @@ namespace QuantCDN.Quant
 
         [Input("actionConfig")]
         public Input<Inputs.RuleFunctionActionConfigGetArgs>? ActionConfig { get; set; }
+
+        /// <summary>
+        /// ASN filter type (asn_is, asn_is_not, any)
+        /// </summary>
+        [Input("asn")]
+        public Input<string>? Asn { get; set; }
+
+        [Input("asnIs")]
+        private InputList<string>? _asnIs;
+
+        /// <summary>
+        /// Allowed AS numbers
+        /// </summary>
+        public InputList<string> AsnIs
+        {
+            get => _asnIs ?? (_asnIs = new InputList<string>());
+            set => _asnIs = value;
+        }
+
+        [Input("asnIsNots")]
+        private InputList<string>? _asnIsNots;
+
+        /// <summary>
+        /// Excluded AS numbers
+        /// </summary>
+        public InputList<string> AsnIsNots
+        {
+            get => _asnIsNots ?? (_asnIsNots = new InputList<string>());
+            set => _asnIsNots = value;
+        }
 
         /// <summary>
         /// Country filter type (country_is, country_is_not, any)
