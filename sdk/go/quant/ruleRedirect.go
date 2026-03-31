@@ -18,6 +18,12 @@ type RuleRedirect struct {
 	// Rule action
 	Action       pulumi.StringOutput            `pulumi:"action"`
 	ActionConfig RuleRedirectActionConfigOutput `pulumi:"actionConfig"`
+	// ASN filter type (asn_is, asn_is_not, any)
+	Asn pulumi.StringOutput `pulumi:"asn"`
+	// Allowed AS numbers
+	AsnIs pulumi.StringArrayOutput `pulumi:"asnIs"`
+	// Excluded AS numbers
+	AsnIsNots pulumi.StringArrayOutput `pulumi:"asnIsNots"`
 	// Country filter type (country_is, country_is_not, any)
 	Country pulumi.StringOutput `pulumi:"country"`
 	// Allowed countries
@@ -103,6 +109,12 @@ type ruleRedirectState struct {
 	// Rule action
 	Action       *string                   `pulumi:"action"`
 	ActionConfig *RuleRedirectActionConfig `pulumi:"actionConfig"`
+	// ASN filter type (asn_is, asn_is_not, any)
+	Asn *string `pulumi:"asn"`
+	// Allowed AS numbers
+	AsnIs []string `pulumi:"asnIs"`
+	// Excluded AS numbers
+	AsnIsNots []string `pulumi:"asnIsNots"`
 	// Country filter type (country_is, country_is_not, any)
 	Country *string `pulumi:"country"`
 	// Allowed countries
@@ -150,6 +162,12 @@ type RuleRedirectState struct {
 	// Rule action
 	Action       pulumi.StringPtrInput
 	ActionConfig RuleRedirectActionConfigPtrInput
+	// ASN filter type (asn_is, asn_is_not, any)
+	Asn pulumi.StringPtrInput
+	// Allowed AS numbers
+	AsnIs pulumi.StringArrayInput
+	// Excluded AS numbers
+	AsnIsNots pulumi.StringArrayInput
 	// Country filter type (country_is, country_is_not, any)
 	Country pulumi.StringPtrInput
 	// Allowed countries
@@ -198,6 +216,12 @@ func (RuleRedirectState) ElementType() reflect.Type {
 }
 
 type ruleRedirectArgs struct {
+	// ASN filter type (asn_is, asn_is_not, any)
+	Asn *string `pulumi:"asn"`
+	// Allowed AS numbers
+	AsnIs []string `pulumi:"asnIs"`
+	// Excluded AS numbers
+	AsnIsNots []string `pulumi:"asnIsNots"`
 	// Country filter type (country_is, country_is_not, any)
 	Country *string `pulumi:"country"`
 	// Allowed countries
@@ -239,6 +263,12 @@ type ruleRedirectArgs struct {
 
 // The set of arguments for constructing a RuleRedirect resource.
 type RuleRedirectArgs struct {
+	// ASN filter type (asn_is, asn_is_not, any)
+	Asn pulumi.StringPtrInput
+	// Allowed AS numbers
+	AsnIs pulumi.StringArrayInput
+	// Excluded AS numbers
+	AsnIsNots pulumi.StringArrayInput
 	// Country filter type (country_is, country_is_not, any)
 	Country pulumi.StringPtrInput
 	// Allowed countries
@@ -372,6 +402,21 @@ func (o RuleRedirectOutput) Action() pulumi.StringOutput {
 
 func (o RuleRedirectOutput) ActionConfig() RuleRedirectActionConfigOutput {
 	return o.ApplyT(func(v *RuleRedirect) RuleRedirectActionConfigOutput { return v.ActionConfig }).(RuleRedirectActionConfigOutput)
+}
+
+// ASN filter type (asn_is, asn_is_not, any)
+func (o RuleRedirectOutput) Asn() pulumi.StringOutput {
+	return o.ApplyT(func(v *RuleRedirect) pulumi.StringOutput { return v.Asn }).(pulumi.StringOutput)
+}
+
+// Allowed AS numbers
+func (o RuleRedirectOutput) AsnIs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *RuleRedirect) pulumi.StringArrayOutput { return v.AsnIs }).(pulumi.StringArrayOutput)
+}
+
+// Excluded AS numbers
+func (o RuleRedirectOutput) AsnIsNots() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *RuleRedirect) pulumi.StringArrayOutput { return v.AsnIsNots }).(pulumi.StringArrayOutput)
 }
 
 // Country filter type (country_is, country_is_not, any)

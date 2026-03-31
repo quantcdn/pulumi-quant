@@ -27,7 +27,7 @@ type CrawlerSchedule struct {
 	CrawlerUuid pulumi.StringOutput `pulumi:"crawlerUuid"`
 	// Creation timestamp
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// Schedule name
+	// Schedule name. If not provided, defaults to 'Schedule {crawler_name}'.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Organization identifier
 	Organization pulumi.StringOutput `pulumi:"organization"`
@@ -35,7 +35,7 @@ type CrawlerSchedule struct {
 	Project pulumi.StringOutput `pulumi:"project"`
 	// Project ID
 	ProjectId pulumi.IntOutput `pulumi:"projectId"`
-	// Cron schedule string
+	// Standard Unix cron expression with 5 space-separated fields: minute, hour, day-of-month, month, day-of-week. Example: 0 2 * * * for daily at 2 AM.
 	ScheduleCronString pulumi.StringOutput `pulumi:"scheduleCronString"`
 	// Last update timestamp
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
@@ -86,7 +86,7 @@ type crawlerScheduleState struct {
 	CrawlerUuid *string `pulumi:"crawlerUuid"`
 	// Creation timestamp
 	CreatedAt *string `pulumi:"createdAt"`
-	// Schedule name
+	// Schedule name. If not provided, defaults to 'Schedule {crawler_name}'.
 	Name *string `pulumi:"name"`
 	// Organization identifier
 	Organization *string `pulumi:"organization"`
@@ -94,7 +94,7 @@ type crawlerScheduleState struct {
 	Project *string `pulumi:"project"`
 	// Project ID
 	ProjectId *int `pulumi:"projectId"`
-	// Cron schedule string
+	// Standard Unix cron expression with 5 space-separated fields: minute, hour, day-of-month, month, day-of-week. Example: 0 2 * * * for daily at 2 AM.
 	ScheduleCronString *string `pulumi:"scheduleCronString"`
 	// Last update timestamp
 	UpdatedAt *string `pulumi:"updatedAt"`
@@ -113,7 +113,7 @@ type CrawlerScheduleState struct {
 	CrawlerUuid pulumi.StringPtrInput
 	// Creation timestamp
 	CreatedAt pulumi.StringPtrInput
-	// Schedule name
+	// Schedule name. If not provided, defaults to 'Schedule {crawler_name}'.
 	Name pulumi.StringPtrInput
 	// Organization identifier
 	Organization pulumi.StringPtrInput
@@ -121,7 +121,7 @@ type CrawlerScheduleState struct {
 	Project pulumi.StringPtrInput
 	// Project ID
 	ProjectId pulumi.IntPtrInput
-	// Cron schedule string
+	// Standard Unix cron expression with 5 space-separated fields: minute, hour, day-of-month, month, day-of-week. Example: 0 2 * * * for daily at 2 AM.
 	ScheduleCronString pulumi.StringPtrInput
 	// Last update timestamp
 	UpdatedAt pulumi.StringPtrInput
@@ -136,13 +136,13 @@ type crawlerScheduleArgs struct {
 	Crawler *string `pulumi:"crawler"`
 	// Crawler schedule identifier
 	CrawlerSchedule *string `pulumi:"crawlerSchedule"`
-	// Schedule name
+	// Schedule name. If not provided, defaults to 'Schedule {crawler_name}'.
 	Name *string `pulumi:"name"`
 	// Organization identifier
 	Organization *string `pulumi:"organization"`
 	// Project identifier
 	Project *string `pulumi:"project"`
-	// Cron schedule string
+	// Standard Unix cron expression with 5 space-separated fields: minute, hour, day-of-month, month, day-of-week. Example: 0 2 * * * for daily at 2 AM.
 	ScheduleCronString string `pulumi:"scheduleCronString"`
 }
 
@@ -152,13 +152,13 @@ type CrawlerScheduleArgs struct {
 	Crawler pulumi.StringPtrInput
 	// Crawler schedule identifier
 	CrawlerSchedule pulumi.StringPtrInput
-	// Schedule name
+	// Schedule name. If not provided, defaults to 'Schedule {crawler_name}'.
 	Name pulumi.StringPtrInput
 	// Organization identifier
 	Organization pulumi.StringPtrInput
 	// Project identifier
 	Project pulumi.StringPtrInput
-	// Cron schedule string
+	// Standard Unix cron expression with 5 space-separated fields: minute, hour, day-of-month, month, day-of-week. Example: 0 2 * * * for daily at 2 AM.
 	ScheduleCronString pulumi.StringInput
 }
 
@@ -279,7 +279,7 @@ func (o CrawlerScheduleOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *CrawlerSchedule) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// Schedule name
+// Schedule name. If not provided, defaults to 'Schedule {crawler_name}'.
 func (o CrawlerScheduleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *CrawlerSchedule) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -299,7 +299,7 @@ func (o CrawlerScheduleOutput) ProjectId() pulumi.IntOutput {
 	return o.ApplyT(func(v *CrawlerSchedule) pulumi.IntOutput { return v.ProjectId }).(pulumi.IntOutput)
 }
 
-// Cron schedule string
+// Standard Unix cron expression with 5 space-separated fields: minute, hour, day-of-month, month, day-of-week. Example: 0 2 * * * for daily at 2 AM.
 func (o CrawlerScheduleOutput) ScheduleCronString() pulumi.StringOutput {
 	return o.ApplyT(func(v *CrawlerSchedule) pulumi.StringOutput { return v.ScheduleCronString }).(pulumi.StringOutput)
 }

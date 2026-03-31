@@ -55,9 +55,15 @@ namespace QuantCDN.Quant
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Organization identifier
+        /// </summary>
         [Output("organization")]
         public Output<string> Organization { get; private set; } = null!;
 
+        /// <summary>
+        /// Project identifier
+        /// </summary>
         [Output("project")]
         public Output<string> Project { get; private set; } = null!;
 
@@ -171,9 +177,15 @@ namespace QuantCDN.Quant
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Organization identifier
+        /// </summary>
         [Input("organization")]
         public Input<string>? Organization { get; set; }
 
+        /// <summary>
+        /// Project identifier
+        /// </summary>
         [Input("project")]
         public Input<string>? Project { get; set; }
 
@@ -236,9 +248,15 @@ namespace QuantCDN.Quant
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Organization identifier
+        /// </summary>
         [Input("organization")]
         public Input<string>? Organization { get; set; }
 
+        /// <summary>
+        /// Project identifier
+        /// </summary>
         [Input("project")]
         public Input<string>? Project { get; set; }
 

@@ -50,6 +50,9 @@ export class Crawler extends pulumi.CustomResource {
      * Crawler configuration (YAML)
      */
     declare public /*out*/ readonly config: pulumi.Output<string>;
+    /**
+     * The UUID of the crawler
+     */
     declare public readonly crawler: pulumi.Output<string>;
     /**
      * Creation timestamp
@@ -274,6 +277,9 @@ export interface CrawlerState {
      * Crawler configuration (YAML)
      */
     config?: pulumi.Input<string>;
+    /**
+     * The UUID of the crawler
+     */
     crawler?: pulumi.Input<string>;
     /**
      * Creation timestamp
@@ -405,6 +411,9 @@ export interface CrawlerArgs {
      * Enable browser mode
      */
     browserMode?: pulumi.Input<boolean>;
+    /**
+     * The UUID of the crawler
+     */
     crawler?: pulumi.Input<string>;
     /**
      * Delay between requests in seconds (default: 4, non-default requires verification)

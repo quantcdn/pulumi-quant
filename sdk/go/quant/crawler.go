@@ -22,7 +22,8 @@ type Crawler struct {
 	// Enable browser mode
 	BrowserMode pulumi.BoolOutput `pulumi:"browserMode"`
 	// Crawler configuration (YAML)
-	Config  pulumi.StringOutput `pulumi:"config"`
+	Config pulumi.StringOutput `pulumi:"config"`
+	// The UUID of the crawler
 	Crawler pulumi.StringOutput `pulumi:"crawler"`
 	// Creation timestamp
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
@@ -122,7 +123,8 @@ type crawlerState struct {
 	// Enable browser mode
 	BrowserMode *bool `pulumi:"browserMode"`
 	// Crawler configuration (YAML)
-	Config  *string `pulumi:"config"`
+	Config *string `pulumi:"config"`
+	// The UUID of the crawler
 	Crawler *string `pulumi:"crawler"`
 	// Creation timestamp
 	CreatedAt *string `pulumi:"createdAt"`
@@ -190,7 +192,8 @@ type CrawlerState struct {
 	// Enable browser mode
 	BrowserMode pulumi.BoolPtrInput
 	// Crawler configuration (YAML)
-	Config  pulumi.StringPtrInput
+	Config pulumi.StringPtrInput
+	// The UUID of the crawler
 	Crawler pulumi.StringPtrInput
 	// Creation timestamp
 	CreatedAt pulumi.StringPtrInput
@@ -260,8 +263,9 @@ type crawlerArgs struct {
 	// Asset harvesting configuration
 	Assets *CrawlerAssets `pulumi:"assets"`
 	// Enable browser mode
-	BrowserMode *bool   `pulumi:"browserMode"`
-	Crawler     *string `pulumi:"crawler"`
+	BrowserMode *bool `pulumi:"browserMode"`
+	// The UUID of the crawler
+	Crawler *string `pulumi:"crawler"`
 	// Delay between requests in seconds (default: 4, non-default requires verification)
 	Delay *float64 `pulumi:"delay"`
 	// Maximum crawl depth, -1 for unlimited
@@ -314,7 +318,8 @@ type CrawlerArgs struct {
 	Assets CrawlerAssetsPtrInput
 	// Enable browser mode
 	BrowserMode pulumi.BoolPtrInput
-	Crawler     pulumi.StringPtrInput
+	// The UUID of the crawler
+	Crawler pulumi.StringPtrInput
 	// Delay between requests in seconds (default: 4, non-default requires verification)
 	Delay pulumi.Float64PtrInput
 	// Maximum crawl depth, -1 for unlimited
@@ -466,6 +471,7 @@ func (o CrawlerOutput) Config() pulumi.StringOutput {
 	return o.ApplyT(func(v *Crawler) pulumi.StringOutput { return v.Config }).(pulumi.StringOutput)
 }
 
+// The UUID of the crawler
 func (o CrawlerOutput) Crawler() pulumi.StringOutput {
 	return o.ApplyT(func(v *Crawler) pulumi.StringOutput { return v.Crawler }).(pulumi.StringOutput)
 }

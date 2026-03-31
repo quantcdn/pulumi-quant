@@ -28,6 +28,12 @@ type RuleProxy struct {
 	ApplicationPort pulumi.IntOutput `pulumi:"applicationPort"`
 	// Enable Quant Cloud application proxy mode
 	ApplicationProxy pulumi.BoolOutput `pulumi:"applicationProxy"`
+	// ASN filter type (asn_is, asn_is_not, any)
+	Asn pulumi.StringOutput `pulumi:"asn"`
+	// Allowed AS numbers
+	AsnIs pulumi.StringArrayOutput `pulumi:"asnIs"`
+	// Excluded AS numbers
+	AsnIsNots pulumi.StringArrayOutput `pulumi:"asnIsNots"`
 	// Basic auth password
 	AuthPass pulumi.StringOutput `pulumi:"authPass"`
 	// Basic auth username
@@ -159,6 +165,12 @@ type ruleProxyState struct {
 	ApplicationPort *int `pulumi:"applicationPort"`
 	// Enable Quant Cloud application proxy mode
 	ApplicationProxy *bool `pulumi:"applicationProxy"`
+	// ASN filter type (asn_is, asn_is_not, any)
+	Asn *string `pulumi:"asn"`
+	// Allowed AS numbers
+	AsnIs []string `pulumi:"asnIs"`
+	// Excluded AS numbers
+	AsnIsNots []string `pulumi:"asnIsNots"`
 	// Basic auth password
 	AuthPass *string `pulumi:"authPass"`
 	// Basic auth username
@@ -252,6 +264,12 @@ type RuleProxyState struct {
 	ApplicationPort pulumi.IntPtrInput
 	// Enable Quant Cloud application proxy mode
 	ApplicationProxy pulumi.BoolPtrInput
+	// ASN filter type (asn_is, asn_is_not, any)
+	Asn pulumi.StringPtrInput
+	// Allowed AS numbers
+	AsnIs pulumi.StringArrayInput
+	// Excluded AS numbers
+	AsnIsNots pulumi.StringArrayInput
 	// Basic auth password
 	AuthPass pulumi.StringPtrInput
 	// Basic auth username
@@ -346,6 +364,12 @@ type ruleProxyArgs struct {
 	ApplicationPort *int `pulumi:"applicationPort"`
 	// Enable Quant Cloud application proxy mode
 	ApplicationProxy *bool `pulumi:"applicationProxy"`
+	// ASN filter type (asn_is, asn_is_not, any)
+	Asn *string `pulumi:"asn"`
+	// Allowed AS numbers
+	AsnIs []string `pulumi:"asnIs"`
+	// Excluded AS numbers
+	AsnIsNots []string `pulumi:"asnIsNots"`
 	// Basic auth password
 	AuthPass *string `pulumi:"authPass"`
 	// Basic auth username
@@ -433,6 +457,12 @@ type RuleProxyArgs struct {
 	ApplicationPort pulumi.IntPtrInput
 	// Enable Quant Cloud application proxy mode
 	ApplicationProxy pulumi.BoolPtrInput
+	// ASN filter type (asn_is, asn_is_not, any)
+	Asn pulumi.StringPtrInput
+	// Allowed AS numbers
+	AsnIs pulumi.StringArrayInput
+	// Excluded AS numbers
+	AsnIsNots pulumi.StringArrayInput
 	// Basic auth password
 	AuthPass pulumi.StringPtrInput
 	// Basic auth username
@@ -627,6 +657,21 @@ func (o RuleProxyOutput) ApplicationPort() pulumi.IntOutput {
 // Enable Quant Cloud application proxy mode
 func (o RuleProxyOutput) ApplicationProxy() pulumi.BoolOutput {
 	return o.ApplyT(func(v *RuleProxy) pulumi.BoolOutput { return v.ApplicationProxy }).(pulumi.BoolOutput)
+}
+
+// ASN filter type (asn_is, asn_is_not, any)
+func (o RuleProxyOutput) Asn() pulumi.StringOutput {
+	return o.ApplyT(func(v *RuleProxy) pulumi.StringOutput { return v.Asn }).(pulumi.StringOutput)
+}
+
+// Allowed AS numbers
+func (o RuleProxyOutput) AsnIs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *RuleProxy) pulumi.StringArrayOutput { return v.AsnIs }).(pulumi.StringArrayOutput)
+}
+
+// Excluded AS numbers
+func (o RuleProxyOutput) AsnIsNots() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *RuleProxy) pulumi.StringArrayOutput { return v.AsnIsNots }).(pulumi.StringArrayOutput)
 }
 
 // Basic auth password

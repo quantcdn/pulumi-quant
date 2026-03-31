@@ -60,7 +60,13 @@ export class Project extends pulumi.CustomResource {
      * Project name
      */
     declare public readonly name: pulumi.Output<string>;
+    /**
+     * Organization identifier
+     */
     declare public readonly organization: pulumi.Output<string>;
+    /**
+     * Project identifier
+     */
     declare public readonly project: pulumi.Output<string>;
     /**
      * Project region
@@ -155,7 +161,13 @@ export interface ProjectState {
      * Project name
      */
     name?: pulumi.Input<string>;
+    /**
+     * Organization identifier
+     */
     organization?: pulumi.Input<string>;
+    /**
+     * Project identifier
+     */
     project?: pulumi.Input<string>;
     /**
      * Project region
@@ -204,7 +216,13 @@ export interface ProjectArgs {
      * Project name
      */
     name?: pulumi.Input<string>;
+    /**
+     * Organization identifier
+     */
     organization?: pulumi.Input<string>;
+    /**
+     * Project identifier
+     */
     project?: pulumi.Input<string>;
     /**
      * Project region

@@ -123,6 +123,12 @@
             "quant_rule_content_filter": {
                 "current": "quant:index:RuleContentFilter",
                 "fields": {
+                    "asn_is": {
+                        "maxItemsOne": false
+                    },
+                    "asn_is_not": {
+                        "maxItemsOne": false
+                    },
                     "country_is": {
                         "maxItemsOne": false
                     },
@@ -152,6 +158,12 @@
             "quant_rule_custom_response": {
                 "current": "quant:index:RuleCustomResponse",
                 "fields": {
+                    "asn_is": {
+                        "maxItemsOne": false
+                    },
+                    "asn_is_not": {
+                        "maxItemsOne": false
+                    },
                     "country_is": {
                         "maxItemsOne": false
                     },
@@ -181,6 +193,12 @@
             "quant_rule_function": {
                 "current": "quant:index:RuleFunction",
                 "fields": {
+                    "asn_is": {
+                        "maxItemsOne": false
+                    },
+                    "asn_is_not": {
+                        "maxItemsOne": false
+                    },
                     "country_is": {
                         "maxItemsOne": false
                     },
@@ -283,6 +301,12 @@
                             }
                         }
                     },
+                    "asn_is": {
+                        "maxItemsOne": false
+                    },
+                    "asn_is_not": {
+                        "maxItemsOne": false
+                    },
                     "country_is": {
                         "maxItemsOne": false
                     },
@@ -352,6 +376,12 @@
             "quant_rule_redirect": {
                 "current": "quant:index:RuleRedirect",
                 "fields": {
+                    "asn_is": {
+                        "maxItemsOne": false
+                    },
+                    "asn_is_not": {
+                        "maxItemsOne": false
+                    },
                     "country_is": {
                         "maxItemsOne": false
                     },

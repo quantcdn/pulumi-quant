@@ -1,6 +1,6 @@
 {
     "name": "@quantcdn/pulumi-quant",
-    "version": "0.1.0",
+    "version": "0.0.0-dev",
     "description": "A Pulumi package for managing QuantCDN resources.",
     "keywords": [
         "pulumi",
@@ -25,7 +25,7 @@
     "pulumi": {
         "resource": true,
         "name": "quant",
-        "version": "0.1.0",
+        "version": "0.0.0-dev",
         "server": "github://api.github.com/quantcdn/pulumi-quant"
     }
 }
