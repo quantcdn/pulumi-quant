@@ -19,7 +19,16 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
+      - name: Generate GitHub App token
+        id: app_token
+        uses: actions/create-github-app-token@v3
+        with:
+          app-id: ${{ secrets.QUANT_SDK_APP_ID }}
+          private-key: ${{ secrets.QUANT_SDK_APP_PRIVATE_KEY }}
+
       - uses: actions/checkout@v4
+        with:
+          token: ${{ steps.app_token.outputs.token }}
 
       - uses: actions/setup-go@v5
         with:
@@ -78,6 +87,7 @@ jobs:
       - name: Create pull request
         uses: peter-evans/create-pull-request@v7
         with:
+          token: ${{ steps.app_token.outputs.token }}
           branch: upgrade/terraform-provider-quant-${{ steps.version.outputs.version }}
           title: "chore: upgrade terraform-provider-quant to ${{ steps.version.outputs.version }}"
           body: |
