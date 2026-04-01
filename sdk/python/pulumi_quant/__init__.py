@@ -6,6 +6,10 @@ import builtins as _builtins
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .ai_governance import *
+from .ai_skill import *
+from .ai_vector_collection import *
+from .ai_vector_document import *
 from .application import *
 from .crawler import *
 from .crawler_schedule import *
@@ -47,6 +51,10 @@ _utilities.register(
   "mod": "index",
   "fqn": "pulumi_quant",
   "classes": {
+   "quant:index:AiGovernance": "AiGovernance",
+   "quant:index:AiSkill": "AiSkill",
+   "quant:index:AiVectorCollection": "AiVectorCollection",
+   "quant:index:AiVectorDocument": "AiVectorDocument",
    "quant:index:Application": "Application",
    "quant:index:Crawler": "Crawler",
    "quant:index:CrawlerSchedule": "CrawlerSchedule",

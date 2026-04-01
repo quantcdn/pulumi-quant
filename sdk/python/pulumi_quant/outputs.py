@@ -16,6 +16,8 @@ from . import _utilities
 from . import outputs
 
 __all__ = [
+    'AiGovernanceSpendLimits',
+    'AiSkillSource',
     'CrawlerAssets',
     'CrawlerAssetsNetworkIntercept',
     'CrawlerAssetsParser',
@@ -43,6 +45,163 @@ __all__ = [
     'RuleServeStaticActionConfig',
     'GetProjectsProjectResult',
 ]
+
+@pulumi.output_type
+class AiGovernanceSpendLimits(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dailyBudgetCents":
+            suggest = "daily_budget_cents"
+        elif key == "monthlyBudgetCents":
+            suggest = "monthly_budget_cents"
+        elif key == "perUserDailyBudgetCents":
+            suggest = "per_user_daily_budget_cents"
+        elif key == "perUserMonthlyBudgetCents":
+            suggest = "per_user_monthly_budget_cents"
+        elif key == "warningThresholdPercent":
+            suggest = "warning_threshold_percent"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AiGovernanceSpendLimits. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AiGovernanceSpendLimits.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AiGovernanceSpendLimits.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 daily_budget_cents: Optional[_builtins.int] = None,
+                 monthly_budget_cents: Optional[_builtins.int] = None,
+                 per_user_daily_budget_cents: Optional[_builtins.int] = None,
+                 per_user_monthly_budget_cents: Optional[_builtins.int] = None,
+                 warning_threshold_percent: Optional[_builtins.int] = None):
+        """
+        :param _builtins.int daily_budget_cents: Daily budget in cents
+        :param _builtins.int monthly_budget_cents: Monthly budget in cents
+        :param _builtins.int per_user_daily_budget_cents: Per-user daily budget in cents
+        :param _builtins.int per_user_monthly_budget_cents: Per-user monthly budget in cents
+        :param _builtins.int warning_threshold_percent: Warning threshold as a percentage of budget (0-100)
+        """
+        if daily_budget_cents is not None:
+            pulumi.set(__self__, "daily_budget_cents", daily_budget_cents)
+        if monthly_budget_cents is not None:
+            pulumi.set(__self__, "monthly_budget_cents", monthly_budget_cents)
+        if per_user_daily_budget_cents is not None:
+            pulumi.set(__self__, "per_user_daily_budget_cents", per_user_daily_budget_cents)
+        if per_user_monthly_budget_cents is not None:
+            pulumi.set(__self__, "per_user_monthly_budget_cents", per_user_monthly_budget_cents)
+        if warning_threshold_percent is not None:
+            pulumi.set(__self__, "warning_threshold_percent", warning_threshold_percent)
+
+    @_builtins.property
+    @pulumi.getter(name="dailyBudgetCents")
+    def daily_budget_cents(self) -> Optional[_builtins.int]:
+        """
+        Daily budget in cents
+        """
+        return pulumi.get(self, "daily_budget_cents")
+
+    @_builtins.property
+    @pulumi.getter(name="monthlyBudgetCents")
+    def monthly_budget_cents(self) -> Optional[_builtins.int]:
+        """
+        Monthly budget in cents
+        """
+        return pulumi.get(self, "monthly_budget_cents")
+
+    @_builtins.property
+    @pulumi.getter(name="perUserDailyBudgetCents")
+    def per_user_daily_budget_cents(self) -> Optional[_builtins.int]:
+        """
+        Per-user daily budget in cents
+        """
+        return pulumi.get(self, "per_user_daily_budget_cents")
+
+    @_builtins.property
+    @pulumi.getter(name="perUserMonthlyBudgetCents")
+    def per_user_monthly_budget_cents(self) -> Optional[_builtins.int]:
+        """
+        Per-user monthly budget in cents
+        """
+        return pulumi.get(self, "per_user_monthly_budget_cents")
+
+    @_builtins.property
+    @pulumi.getter(name="warningThresholdPercent")
+    def warning_threshold_percent(self) -> Optional[_builtins.int]:
+        """
+        Warning threshold as a percentage of budget (0-100)
+        """
+        return pulumi.get(self, "warning_threshold_percent")
+
+
+@pulumi.output_type
+class AiSkillSource(dict):
+    def __init__(__self__, *,
+                 type: _builtins.str,
+                 version: _builtins.str,
+                 path: Optional[_builtins.str] = None,
+                 repo: Optional[_builtins.str] = None,
+                 url: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str type: Source type: `github` or `skills.sh`
+        :param _builtins.str version: Pinned version tag
+        :param _builtins.str path: File path within the repository
+        :param _builtins.str repo: GitHub repository in `org/repo` format
+        :param _builtins.str url: skills.sh URL
+        """
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "version", version)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if repo is not None:
+            pulumi.set(__self__, "repo", repo)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Source type: `github` or `skills.sh`
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        Pinned version tag
+        """
+        return pulumi.get(self, "version")
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> Optional[_builtins.str]:
+        """
+        File path within the repository
+        """
+        return pulumi.get(self, "path")
+
+    @_builtins.property
+    @pulumi.getter
+    def repo(self) -> Optional[_builtins.str]:
+        """
+        GitHub repository in `org/repo` format
+        """
+        return pulumi.get(self, "repo")
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> Optional[_builtins.str]:
+        """
+        skills.sh URL
+        """
+        return pulumi.get(self, "url")
+
 
 @pulumi.output_type
 class CrawlerAssets(dict):

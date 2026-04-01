@@ -21,6 +21,14 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "quant:index:AiGovernance":
+		r = &AiGovernance{}
+	case "quant:index:AiSkill":
+		r = &AiSkill{}
+	case "quant:index:AiVectorCollection":
+		r = &AiVectorCollection{}
+	case "quant:index:AiVectorDocument":
+		r = &AiVectorDocument{}
 	case "quant:index:Application":
 		r = &Application{}
 	case "quant:index:Crawler":
