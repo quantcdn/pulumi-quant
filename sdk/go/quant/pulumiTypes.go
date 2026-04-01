@@ -13,6 +13,432 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type AiGovernanceSpendLimits struct {
+	// Daily budget in cents
+	DailyBudgetCents *int `pulumi:"dailyBudgetCents"`
+	// Monthly budget in cents
+	MonthlyBudgetCents *int `pulumi:"monthlyBudgetCents"`
+	// Per-user daily budget in cents
+	PerUserDailyBudgetCents *int `pulumi:"perUserDailyBudgetCents"`
+	// Per-user monthly budget in cents
+	PerUserMonthlyBudgetCents *int `pulumi:"perUserMonthlyBudgetCents"`
+	// Warning threshold as a percentage of budget (0-100)
+	WarningThresholdPercent *int `pulumi:"warningThresholdPercent"`
+}
+
+// AiGovernanceSpendLimitsInput is an input type that accepts AiGovernanceSpendLimitsArgs and AiGovernanceSpendLimitsOutput values.
+// You can construct a concrete instance of `AiGovernanceSpendLimitsInput` via:
+//
+//	AiGovernanceSpendLimitsArgs{...}
+type AiGovernanceSpendLimitsInput interface {
+	pulumi.Input
+
+	ToAiGovernanceSpendLimitsOutput() AiGovernanceSpendLimitsOutput
+	ToAiGovernanceSpendLimitsOutputWithContext(context.Context) AiGovernanceSpendLimitsOutput
+}
+
+type AiGovernanceSpendLimitsArgs struct {
+	// Daily budget in cents
+	DailyBudgetCents pulumi.IntPtrInput `pulumi:"dailyBudgetCents"`
+	// Monthly budget in cents
+	MonthlyBudgetCents pulumi.IntPtrInput `pulumi:"monthlyBudgetCents"`
+	// Per-user daily budget in cents
+	PerUserDailyBudgetCents pulumi.IntPtrInput `pulumi:"perUserDailyBudgetCents"`
+	// Per-user monthly budget in cents
+	PerUserMonthlyBudgetCents pulumi.IntPtrInput `pulumi:"perUserMonthlyBudgetCents"`
+	// Warning threshold as a percentage of budget (0-100)
+	WarningThresholdPercent pulumi.IntPtrInput `pulumi:"warningThresholdPercent"`
+}
+
+func (AiGovernanceSpendLimitsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AiGovernanceSpendLimits)(nil)).Elem()
+}
+
+func (i AiGovernanceSpendLimitsArgs) ToAiGovernanceSpendLimitsOutput() AiGovernanceSpendLimitsOutput {
+	return i.ToAiGovernanceSpendLimitsOutputWithContext(context.Background())
+}
+
+func (i AiGovernanceSpendLimitsArgs) ToAiGovernanceSpendLimitsOutputWithContext(ctx context.Context) AiGovernanceSpendLimitsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AiGovernanceSpendLimitsOutput)
+}
+
+func (i AiGovernanceSpendLimitsArgs) ToAiGovernanceSpendLimitsPtrOutput() AiGovernanceSpendLimitsPtrOutput {
+	return i.ToAiGovernanceSpendLimitsPtrOutputWithContext(context.Background())
+}
+
+func (i AiGovernanceSpendLimitsArgs) ToAiGovernanceSpendLimitsPtrOutputWithContext(ctx context.Context) AiGovernanceSpendLimitsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AiGovernanceSpendLimitsOutput).ToAiGovernanceSpendLimitsPtrOutputWithContext(ctx)
+}
+
+// AiGovernanceSpendLimitsPtrInput is an input type that accepts AiGovernanceSpendLimitsArgs, AiGovernanceSpendLimitsPtr and AiGovernanceSpendLimitsPtrOutput values.
+// You can construct a concrete instance of `AiGovernanceSpendLimitsPtrInput` via:
+//
+//	        AiGovernanceSpendLimitsArgs{...}
+//
+//	or:
+//
+//	        nil
+type AiGovernanceSpendLimitsPtrInput interface {
+	pulumi.Input
+
+	ToAiGovernanceSpendLimitsPtrOutput() AiGovernanceSpendLimitsPtrOutput
+	ToAiGovernanceSpendLimitsPtrOutputWithContext(context.Context) AiGovernanceSpendLimitsPtrOutput
+}
+
+type aiGovernanceSpendLimitsPtrType AiGovernanceSpendLimitsArgs
+
+func AiGovernanceSpendLimitsPtr(v *AiGovernanceSpendLimitsArgs) AiGovernanceSpendLimitsPtrInput {
+	return (*aiGovernanceSpendLimitsPtrType)(v)
+}
+
+func (*aiGovernanceSpendLimitsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AiGovernanceSpendLimits)(nil)).Elem()
+}
+
+func (i *aiGovernanceSpendLimitsPtrType) ToAiGovernanceSpendLimitsPtrOutput() AiGovernanceSpendLimitsPtrOutput {
+	return i.ToAiGovernanceSpendLimitsPtrOutputWithContext(context.Background())
+}
+
+func (i *aiGovernanceSpendLimitsPtrType) ToAiGovernanceSpendLimitsPtrOutputWithContext(ctx context.Context) AiGovernanceSpendLimitsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AiGovernanceSpendLimitsPtrOutput)
+}
+
+type AiGovernanceSpendLimitsOutput struct{ *pulumi.OutputState }
+
+func (AiGovernanceSpendLimitsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AiGovernanceSpendLimits)(nil)).Elem()
+}
+
+func (o AiGovernanceSpendLimitsOutput) ToAiGovernanceSpendLimitsOutput() AiGovernanceSpendLimitsOutput {
+	return o
+}
+
+func (o AiGovernanceSpendLimitsOutput) ToAiGovernanceSpendLimitsOutputWithContext(ctx context.Context) AiGovernanceSpendLimitsOutput {
+	return o
+}
+
+func (o AiGovernanceSpendLimitsOutput) ToAiGovernanceSpendLimitsPtrOutput() AiGovernanceSpendLimitsPtrOutput {
+	return o.ToAiGovernanceSpendLimitsPtrOutputWithContext(context.Background())
+}
+
+func (o AiGovernanceSpendLimitsOutput) ToAiGovernanceSpendLimitsPtrOutputWithContext(ctx context.Context) AiGovernanceSpendLimitsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AiGovernanceSpendLimits) *AiGovernanceSpendLimits {
+		return &v
+	}).(AiGovernanceSpendLimitsPtrOutput)
+}
+
+// Daily budget in cents
+func (o AiGovernanceSpendLimitsOutput) DailyBudgetCents() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AiGovernanceSpendLimits) *int { return v.DailyBudgetCents }).(pulumi.IntPtrOutput)
+}
+
+// Monthly budget in cents
+func (o AiGovernanceSpendLimitsOutput) MonthlyBudgetCents() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AiGovernanceSpendLimits) *int { return v.MonthlyBudgetCents }).(pulumi.IntPtrOutput)
+}
+
+// Per-user daily budget in cents
+func (o AiGovernanceSpendLimitsOutput) PerUserDailyBudgetCents() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AiGovernanceSpendLimits) *int { return v.PerUserDailyBudgetCents }).(pulumi.IntPtrOutput)
+}
+
+// Per-user monthly budget in cents
+func (o AiGovernanceSpendLimitsOutput) PerUserMonthlyBudgetCents() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AiGovernanceSpendLimits) *int { return v.PerUserMonthlyBudgetCents }).(pulumi.IntPtrOutput)
+}
+
+// Warning threshold as a percentage of budget (0-100)
+func (o AiGovernanceSpendLimitsOutput) WarningThresholdPercent() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AiGovernanceSpendLimits) *int { return v.WarningThresholdPercent }).(pulumi.IntPtrOutput)
+}
+
+type AiGovernanceSpendLimitsPtrOutput struct{ *pulumi.OutputState }
+
+func (AiGovernanceSpendLimitsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AiGovernanceSpendLimits)(nil)).Elem()
+}
+
+func (o AiGovernanceSpendLimitsPtrOutput) ToAiGovernanceSpendLimitsPtrOutput() AiGovernanceSpendLimitsPtrOutput {
+	return o
+}
+
+func (o AiGovernanceSpendLimitsPtrOutput) ToAiGovernanceSpendLimitsPtrOutputWithContext(ctx context.Context) AiGovernanceSpendLimitsPtrOutput {
+	return o
+}
+
+func (o AiGovernanceSpendLimitsPtrOutput) Elem() AiGovernanceSpendLimitsOutput {
+	return o.ApplyT(func(v *AiGovernanceSpendLimits) AiGovernanceSpendLimits {
+		if v != nil {
+			return *v
+		}
+		var ret AiGovernanceSpendLimits
+		return ret
+	}).(AiGovernanceSpendLimitsOutput)
+}
+
+// Daily budget in cents
+func (o AiGovernanceSpendLimitsPtrOutput) DailyBudgetCents() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AiGovernanceSpendLimits) *int {
+		if v == nil {
+			return nil
+		}
+		return v.DailyBudgetCents
+	}).(pulumi.IntPtrOutput)
+}
+
+// Monthly budget in cents
+func (o AiGovernanceSpendLimitsPtrOutput) MonthlyBudgetCents() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AiGovernanceSpendLimits) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MonthlyBudgetCents
+	}).(pulumi.IntPtrOutput)
+}
+
+// Per-user daily budget in cents
+func (o AiGovernanceSpendLimitsPtrOutput) PerUserDailyBudgetCents() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AiGovernanceSpendLimits) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PerUserDailyBudgetCents
+	}).(pulumi.IntPtrOutput)
+}
+
+// Per-user monthly budget in cents
+func (o AiGovernanceSpendLimitsPtrOutput) PerUserMonthlyBudgetCents() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AiGovernanceSpendLimits) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PerUserMonthlyBudgetCents
+	}).(pulumi.IntPtrOutput)
+}
+
+// Warning threshold as a percentage of budget (0-100)
+func (o AiGovernanceSpendLimitsPtrOutput) WarningThresholdPercent() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AiGovernanceSpendLimits) *int {
+		if v == nil {
+			return nil
+		}
+		return v.WarningThresholdPercent
+	}).(pulumi.IntPtrOutput)
+}
+
+type AiSkillSource struct {
+	// File path within the repository
+	Path *string `pulumi:"path"`
+	// GitHub repository in `org/repo` format
+	Repo *string `pulumi:"repo"`
+	// Source type: `github` or `skills.sh`
+	Type string `pulumi:"type"`
+	// skills.sh URL
+	Url *string `pulumi:"url"`
+	// Pinned version tag
+	Version string `pulumi:"version"`
+}
+
+// AiSkillSourceInput is an input type that accepts AiSkillSourceArgs and AiSkillSourceOutput values.
+// You can construct a concrete instance of `AiSkillSourceInput` via:
+//
+//	AiSkillSourceArgs{...}
+type AiSkillSourceInput interface {
+	pulumi.Input
+
+	ToAiSkillSourceOutput() AiSkillSourceOutput
+	ToAiSkillSourceOutputWithContext(context.Context) AiSkillSourceOutput
+}
+
+type AiSkillSourceArgs struct {
+	// File path within the repository
+	Path pulumi.StringPtrInput `pulumi:"path"`
+	// GitHub repository in `org/repo` format
+	Repo pulumi.StringPtrInput `pulumi:"repo"`
+	// Source type: `github` or `skills.sh`
+	Type pulumi.StringInput `pulumi:"type"`
+	// skills.sh URL
+	Url pulumi.StringPtrInput `pulumi:"url"`
+	// Pinned version tag
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (AiSkillSourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AiSkillSource)(nil)).Elem()
+}
+
+func (i AiSkillSourceArgs) ToAiSkillSourceOutput() AiSkillSourceOutput {
+	return i.ToAiSkillSourceOutputWithContext(context.Background())
+}
+
+func (i AiSkillSourceArgs) ToAiSkillSourceOutputWithContext(ctx context.Context) AiSkillSourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AiSkillSourceOutput)
+}
+
+func (i AiSkillSourceArgs) ToAiSkillSourcePtrOutput() AiSkillSourcePtrOutput {
+	return i.ToAiSkillSourcePtrOutputWithContext(context.Background())
+}
+
+func (i AiSkillSourceArgs) ToAiSkillSourcePtrOutputWithContext(ctx context.Context) AiSkillSourcePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AiSkillSourceOutput).ToAiSkillSourcePtrOutputWithContext(ctx)
+}
+
+// AiSkillSourcePtrInput is an input type that accepts AiSkillSourceArgs, AiSkillSourcePtr and AiSkillSourcePtrOutput values.
+// You can construct a concrete instance of `AiSkillSourcePtrInput` via:
+//
+//	        AiSkillSourceArgs{...}
+//
+//	or:
+//
+//	        nil
+type AiSkillSourcePtrInput interface {
+	pulumi.Input
+
+	ToAiSkillSourcePtrOutput() AiSkillSourcePtrOutput
+	ToAiSkillSourcePtrOutputWithContext(context.Context) AiSkillSourcePtrOutput
+}
+
+type aiSkillSourcePtrType AiSkillSourceArgs
+
+func AiSkillSourcePtr(v *AiSkillSourceArgs) AiSkillSourcePtrInput {
+	return (*aiSkillSourcePtrType)(v)
+}
+
+func (*aiSkillSourcePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AiSkillSource)(nil)).Elem()
+}
+
+func (i *aiSkillSourcePtrType) ToAiSkillSourcePtrOutput() AiSkillSourcePtrOutput {
+	return i.ToAiSkillSourcePtrOutputWithContext(context.Background())
+}
+
+func (i *aiSkillSourcePtrType) ToAiSkillSourcePtrOutputWithContext(ctx context.Context) AiSkillSourcePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AiSkillSourcePtrOutput)
+}
+
+type AiSkillSourceOutput struct{ *pulumi.OutputState }
+
+func (AiSkillSourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AiSkillSource)(nil)).Elem()
+}
+
+func (o AiSkillSourceOutput) ToAiSkillSourceOutput() AiSkillSourceOutput {
+	return o
+}
+
+func (o AiSkillSourceOutput) ToAiSkillSourceOutputWithContext(ctx context.Context) AiSkillSourceOutput {
+	return o
+}
+
+func (o AiSkillSourceOutput) ToAiSkillSourcePtrOutput() AiSkillSourcePtrOutput {
+	return o.ToAiSkillSourcePtrOutputWithContext(context.Background())
+}
+
+func (o AiSkillSourceOutput) ToAiSkillSourcePtrOutputWithContext(ctx context.Context) AiSkillSourcePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AiSkillSource) *AiSkillSource {
+		return &v
+	}).(AiSkillSourcePtrOutput)
+}
+
+// File path within the repository
+func (o AiSkillSourceOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AiSkillSource) *string { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+// GitHub repository in `org/repo` format
+func (o AiSkillSourceOutput) Repo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AiSkillSource) *string { return v.Repo }).(pulumi.StringPtrOutput)
+}
+
+// Source type: `github` or `skills.sh`
+func (o AiSkillSourceOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v AiSkillSource) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// skills.sh URL
+func (o AiSkillSourceOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AiSkillSource) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+// Pinned version tag
+func (o AiSkillSourceOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v AiSkillSource) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type AiSkillSourcePtrOutput struct{ *pulumi.OutputState }
+
+func (AiSkillSourcePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AiSkillSource)(nil)).Elem()
+}
+
+func (o AiSkillSourcePtrOutput) ToAiSkillSourcePtrOutput() AiSkillSourcePtrOutput {
+	return o
+}
+
+func (o AiSkillSourcePtrOutput) ToAiSkillSourcePtrOutputWithContext(ctx context.Context) AiSkillSourcePtrOutput {
+	return o
+}
+
+func (o AiSkillSourcePtrOutput) Elem() AiSkillSourceOutput {
+	return o.ApplyT(func(v *AiSkillSource) AiSkillSource {
+		if v != nil {
+			return *v
+		}
+		var ret AiSkillSource
+		return ret
+	}).(AiSkillSourceOutput)
+}
+
+// File path within the repository
+func (o AiSkillSourcePtrOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AiSkillSource) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Path
+	}).(pulumi.StringPtrOutput)
+}
+
+// GitHub repository in `org/repo` format
+func (o AiSkillSourcePtrOutput) Repo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AiSkillSource) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Repo
+	}).(pulumi.StringPtrOutput)
+}
+
+// Source type: `github` or `skills.sh`
+func (o AiSkillSourcePtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AiSkillSource) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+// skills.sh URL
+func (o AiSkillSourcePtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AiSkillSource) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
+// Pinned version tag
+func (o AiSkillSourcePtrOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AiSkillSource) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Version
+	}).(pulumi.StringPtrOutput)
+}
+
 type CrawlerAssets struct {
 	// Network intercept configuration for asset collection
 	NetworkIntercept *CrawlerAssetsNetworkIntercept `pulumi:"networkIntercept"`
@@ -5058,6 +5484,10 @@ func (o GetProjectsProjectArrayOutput) Index(i pulumi.IntInput) GetProjectsProje
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AiGovernanceSpendLimitsInput)(nil)).Elem(), AiGovernanceSpendLimitsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AiGovernanceSpendLimitsPtrInput)(nil)).Elem(), AiGovernanceSpendLimitsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AiSkillSourceInput)(nil)).Elem(), AiSkillSourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AiSkillSourcePtrInput)(nil)).Elem(), AiSkillSourceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CrawlerAssetsInput)(nil)).Elem(), CrawlerAssetsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CrawlerAssetsPtrInput)(nil)).Elem(), CrawlerAssetsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CrawlerAssetsNetworkInterceptInput)(nil)).Elem(), CrawlerAssetsNetworkInterceptArgs{})
@@ -5110,6 +5540,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RuleServeStaticActionConfigPtrInput)(nil)).Elem(), RuleServeStaticActionConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsProjectInput)(nil)).Elem(), GetProjectsProjectArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsProjectArrayInput)(nil)).Elem(), GetProjectsProjectArray{})
+	pulumi.RegisterOutputType(AiGovernanceSpendLimitsOutput{})
+	pulumi.RegisterOutputType(AiGovernanceSpendLimitsPtrOutput{})
+	pulumi.RegisterOutputType(AiSkillSourceOutput{})
+	pulumi.RegisterOutputType(AiSkillSourcePtrOutput{})
 	pulumi.RegisterOutputType(CrawlerAssetsOutput{})
 	pulumi.RegisterOutputType(CrawlerAssetsPtrOutput{})
 	pulumi.RegisterOutputType(CrawlerAssetsNetworkInterceptOutput{})

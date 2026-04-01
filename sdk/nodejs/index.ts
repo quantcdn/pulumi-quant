@@ -5,6 +5,26 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export { AiGovernanceArgs, AiGovernanceState } from "./aiGovernance";
+export type AiGovernance = import("./aiGovernance").AiGovernance;
+export const AiGovernance: typeof import("./aiGovernance").AiGovernance = null as any;
+utilities.lazyLoad(exports, ["AiGovernance"], () => require("./aiGovernance"));
+
+export { AiSkillArgs, AiSkillState } from "./aiSkill";
+export type AiSkill = import("./aiSkill").AiSkill;
+export const AiSkill: typeof import("./aiSkill").AiSkill = null as any;
+utilities.lazyLoad(exports, ["AiSkill"], () => require("./aiSkill"));
+
+export { AiVectorCollectionArgs, AiVectorCollectionState } from "./aiVectorCollection";
+export type AiVectorCollection = import("./aiVectorCollection").AiVectorCollection;
+export const AiVectorCollection: typeof import("./aiVectorCollection").AiVectorCollection = null as any;
+utilities.lazyLoad(exports, ["AiVectorCollection"], () => require("./aiVectorCollection"));
+
+export { AiVectorDocumentArgs, AiVectorDocumentState } from "./aiVectorDocument";
+export type AiVectorDocument = import("./aiVectorDocument").AiVectorDocument;
+export const AiVectorDocument: typeof import("./aiVectorDocument").AiVectorDocument = null as any;
+utilities.lazyLoad(exports, ["AiVectorDocument"], () => require("./aiVectorDocument"));
+
 export { ApplicationArgs, ApplicationState } from "./application";
 export type Application = import("./application").Application;
 export const Application: typeof import("./application").Application = null as any;
@@ -132,6 +152,14 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "quant:index:AiGovernance":
+                return new AiGovernance(name, <any>undefined, { urn })
+            case "quant:index:AiSkill":
+                return new AiSkill(name, <any>undefined, { urn })
+            case "quant:index:AiVectorCollection":
+                return new AiVectorCollection(name, <any>undefined, { urn })
+            case "quant:index:AiVectorDocument":
+                return new AiVectorDocument(name, <any>undefined, { urn })
             case "quant:index:Application":
                 return new Application(name, <any>undefined, { urn })
             case "quant:index:Crawler":

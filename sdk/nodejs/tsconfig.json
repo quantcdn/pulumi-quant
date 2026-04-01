@@ -13,6 +13,10 @@
         "strict": true
     },
     "files": [
+        "aiGovernance.ts",
+        "aiSkill.ts",
+        "aiVectorCollection.ts",
+        "aiVectorDocument.ts",
         "application.ts",
         "config/index.ts",
         "config/vars.ts",

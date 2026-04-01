@@ -5,6 +5,52 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface AiGovernanceSpendLimits {
+    /**
+     * Daily budget in cents
+     */
+    dailyBudgetCents?: number;
+    /**
+     * Monthly budget in cents
+     */
+    monthlyBudgetCents?: number;
+    /**
+     * Per-user daily budget in cents
+     */
+    perUserDailyBudgetCents?: number;
+    /**
+     * Per-user monthly budget in cents
+     */
+    perUserMonthlyBudgetCents?: number;
+    /**
+     * Warning threshold as a percentage of budget (0-100)
+     */
+    warningThresholdPercent?: number;
+}
+
+export interface AiSkillSource {
+    /**
+     * File path within the repository
+     */
+    path?: string;
+    /**
+     * GitHub repository in `org/repo` format
+     */
+    repo?: string;
+    /**
+     * Source type: `github` or `skills.sh`
+     */
+    type: string;
+    /**
+     * skills.sh URL
+     */
+    url?: string;
+    /**
+     * Pinned version tag
+     */
+    version: string;
+}
+
 export interface CrawlerAssets {
     /**
      * Network intercept configuration for asset collection

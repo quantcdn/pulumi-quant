@@ -1,6 +1,36 @@
 {
     "auto-aliasing": {
         "resources": {
+            "quant_ai_governance": {
+                "current": "quant:index:AiGovernance",
+                "fields": {
+                    "mandatory_filter_policies": {
+                        "maxItemsOne": false
+                    },
+                    "model_list": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "quant_ai_skill": {
+                "current": "quant:index:AiSkill",
+                "fields": {
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "quant_ai_vector_collection": {
+                "current": "quant:index:AiVectorCollection"
+            },
+            "quant_ai_vector_document": {
+                "current": "quant:index:AiVectorDocument",
+                "fields": {
+                    "searchable_fields": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "quant_application": {
                 "current": "quant:index:Application"
             },
